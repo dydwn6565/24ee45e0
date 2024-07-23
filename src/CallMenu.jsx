@@ -19,6 +19,7 @@ const CallMenu = React.memo(({ anchorEl, open, onClose, onMenuItemClick, selecte
       onClose={onClose}
     >
       <MenuItem onClick={() => onMenuItemClick('Call')}>Call</MenuItem>
+      
       {selectedCall.is_archived === true ? (
         <MenuItem onClick={() => onMenuItemClick('Activity', selectedCallId)}>Activity</MenuItem>
       ) : (

@@ -22,7 +22,6 @@ const CallListAndCallItem = ({ airCall, state }) => {
   const getDateOnly = (isoDateString) => {
     const date = new Date(isoDateString);
     const year = date.getUTCFullYear();
-    console.log(date);
     const monthNames = [
       "January", "February", "March", "April", "May", "June", "July", 
       "August", "September", "October", "November", "December"
@@ -43,7 +42,9 @@ const CallListAndCallItem = ({ airCall, state }) => {
   };
 
   const handleMenuItemClick = async (option, selectedCallId) => {
-    const bodyContent = option === "Archive" ? { is_archived: false } : { is_archived: true };
+    
+    const bodyContent = option === "Archive" ? { is_archived: true } : { is_archived: false };
+    
     try {
       const response = await fetch(`https://aircall-backend.onrender.com/activities/${selectedCallId}`, {
         method: 'PATCH',
@@ -83,9 +84,6 @@ const CallListAndCallItem = ({ airCall, state }) => {
 
   return (
     <div>
-      <>
-      </>
-      
       {Object.keys(groupedCallsByDate).length > 0 ? (
         
         Object.keys(groupedCallsByDate).map((date) => {
@@ -101,7 +99,7 @@ const CallListAndCallItem = ({ airCall, state }) => {
               {Object.keys(callsByFromTo).map((fromToKey) => {
                 const calls = callsByFromTo[fromToKey];
                 const callCount = calls.length;
-                const activity = calls[0]; // 대표 항목 선택
+                const activity = calls[callCount-1]; 
 
                 return (
                   <CallItem
