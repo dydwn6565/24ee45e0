@@ -36,38 +36,33 @@ const MainPage = () => {
   }, [airCallState, airCall]);
   const renderContent = () => {
     switch (navigationState) {
-      case 'Call':
-        return (
-          <>
-            <StateChangeComponent airCall={airCall} />
-            {airCall.length > 0 && airCallState === 'Activity' ? (
-              <CallListAndCallItem airCall={airCall} state={false} />
-            ) : (
-              <CallListAndCallItem airCall={airCall} state={true} />
-            )}
-          </>
-        );
-      case 'PeopleList':
-        return <PhoneNumberListPage airCall={airCall} />;
+    case 'Call':
+      return (
+        <>
+          <StateChangeComponent airCall={airCall} />
+          {airCall.length > 0 && airCallState === 'Activity' ? (
+            <CallListAndCallItem airCall={airCall} state={false} />
+          ) : (
+            <CallListAndCallItem airCall={airCall} state={true} />
+          )}
+        </>
+      );
+    case 'PeopleList':
+      return <PhoneNumberListPage airCall={airCall} />;
 
-      case 'KeyPad':
-        return <KeyPadComponent />;
+    case 'KeyPad':
+      return <KeyPadComponent />;
 
-      case 'Setting':
-        return <SettingPage />;
+    case 'Setting':
+      return <SettingPage />;
 
-      default:
-        return <Typography>No content available</Typography>;
+    default:
+      return <Typography>No content available</Typography>;
     }
   };
   return (
     <div className="activity-feed-page-container">
       <div>{renderContent()}</div>
-      {/* {airCall.length > 0 && airCallState === 'Activity' ? (
-        <CallListAndCallItem airCall={airCall} state={false} />
-      ) : (
-        <CallListAndCallItem airCall={airCall} state={true} />
-      )} */}
     </div>
   );
 };
