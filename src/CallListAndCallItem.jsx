@@ -66,57 +66,64 @@ const CallListAndCallItem = ({ airCall, state }) => {
   };
 
   const open = Boolean(anchorEl);
-
   const groupedCallsByDate = filteredAirCall.reduce((acc, call) => {
     const dateKey = getDateOnly(call.created_at);
+    const fromToKey = `${call.from}-${call.to}`;
     
-  
-    let fromToKey = `${call.from}-${call.to}`;
     if (!acc[dateKey]) {
       acc[dateKey] = {};
     }
-    if (!acc[dateKey][fromToKey]) {
-      acc[dateKey][fromToKey] = [];
+    if (!acc[dateKey][call.call_type]) {
+      acc[dateKey][call.call_type] = {};
     }
-    acc[dateKey][fromToKey].push(call);
+    if (!acc[dateKey][call.call_type][fromToKey]) {
+      acc[dateKey][call.call_type][fromToKey] = [];
+    }
+    acc[dateKey][call.call_type][fromToKey].push(call);
     return acc;
   }, {});
 
+  const mergedGroupedCallsByDate = Object.entries(groupedCallsByDate).reduce((acc, [date, fromToGroups]) => {
+    acc[date] = Object.entries(fromToGroups).reduce((dateAcc, [fromToKey, callTypes]) => {
+      dateAcc[fromToKey] = Object.entries(callTypes).map(([callType, calls]) => ({
+        callType,
+        count: calls.length,
+        calls
+      }));
+      return dateAcc;
+    }, {});
+    return acc;
+  }, {});
+  
   return (
     <div>
-      {Object.keys(groupedCallsByDate).length > 0 ? (
-        
-        Object.keys(groupedCallsByDate).map((date) => {
-          const callsByFromTo = groupedCallsByDate[date];
-
-          return (
-            <div key={date}>
-              <Box className="divide-line">
-                <Divider className='dot-divider' />
-                <Typography className='lightgrey-text'>{date}</Typography>
-                <Divider className='dot-divider' />
-              </Box>
-              {Object.keys(callsByFromTo).map((fromToKey) => {
-                const calls = callsByFromTo[fromToKey];
-                const callCount = calls.length;
-                const activity = calls[callCount-1]; 
-
+      {Object.entries(groupedCallsByDate).map(([date, callTypes]) => (
+        <div key={date}>
+          <Box className="divide-line">
+            <Divider className='dot-divider' />
+            <Typography className='lightgrey-text'>{date}</Typography>
+            <Divider className='dot-divider' />
+          </Box>
+          {Object.entries(callTypes).map(([callType, fromToGroups]) => (
+            <div key={callType}>
+              
+              {Object.entries(fromToGroups).map(([fromToKey, calls]) => {
                 return (
-                  <CallItem
-                    key={activity.id}
-                    activity={activity}
-                    onClick={(event) => handleClick(event, activity.id)}
-                    callCount={callCount}
-                  />
+                  <div key={fromToKey}>
+                    <CallItem
+                      key={fromToKey}
+                      activity={calls[0]} 
+                      count={calls.length} 
+                      onClick={handleClick}
+                    />
+                  </div>
                 );
               })}
             </div>
-          );
-        })
-        
-      ) : (
-        <p>Loading...</p>
-      )}
+          ))}
+        </div>
+      
+      ))}
       <CallMenu
         anchorEl={anchorEl}
         open={open}

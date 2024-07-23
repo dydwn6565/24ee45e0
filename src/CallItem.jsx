@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 import { BsTelephoneInboundFill } from 'react-icons/bs';
 import { PiDotsThreeVerticalThin } from 'react-icons/pi';
 
-const CallItem = ({ activity, onClick, callCount }) => {
+const CallItem = ({ activity, onClick, callCount,count }) => {
   const getTimeOnly = (isoDateString) => {
     
     const date = new Date(isoDateString);
@@ -21,7 +21,7 @@ const CallItem = ({ activity, onClick, callCount }) => {
       <div className='call-container-left'>
         <BsTelephoneInboundFill />
         <div className='call-container-left-information'>
-          <div>{activity.from} ({callCount} calls)</div>
+          <div>{activity.from} ({count} calls)</div>
           <div className='lightgrey-text'>tried to call on {activity.to}</div>
         </div>
       </div>
