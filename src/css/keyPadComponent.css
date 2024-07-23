@@ -1,0 +1,42 @@
+.keypad-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.input-number {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+  min-height: 30px; /* 최소 높이 설정 */
+}
+
+.keypad-row {
+  display: flex;
+}
+
+.keypad-button {
+  width: 60px;
+  height: 60px;
+  margin: 5px;
+  font-size: 20px;
+  border: none;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.keypad-button:hover {
+  background-color: #d0d0d0;
+}
+
+.call-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.call-button:hover {
+  background-color: #45a049;
+}

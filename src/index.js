@@ -1,5 +1,4 @@
 import './css/body.css';
-import './css/app.css';
 import './css/header.css';
 import React from 'react';
 import App from './App.jsx';

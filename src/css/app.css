@@ -28,3 +28,19 @@
   font-size: 13px !important;
   font-weight: 500 !important;
 }
+
+.blue {
+  background-color: #3498db;
+}
+
+.red {
+  background-color: #e74c3c;
+}
+
+.green {
+  background-color: #2ecc71;
+}
+
+.yellow {
+  background-color: #f1c40f;
+}

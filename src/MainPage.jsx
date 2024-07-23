@@ -10,6 +10,7 @@ import StateChangeComponent from './StateChangeComponent.jsx';
 import { Typography } from '@mui/material';
 import PhoneNumberListPage from './PhoneNumberListPage.jsx';
 import SettingPage from './SettingPage.jsx';
+import KeyPadComponent from './KeyPadComponent.jsx';
 
 const MainPage = () => {
   const [airCall, setAirCall] = useState([]);
@@ -35,25 +36,28 @@ const MainPage = () => {
   }, [airCallState, airCall]);
   const renderContent = () => {
     switch (navigationState) {
-    case 'Call':
-      return (
-        <>
-          <StateChangeComponent airCall={airCall} />
-          {airCall.length > 0 && airCallState === 'Activity' ? (
-            <CallListAndCallItem airCall={airCall} state={false} />
-          ) : (
-            <CallListAndCallItem airCall={airCall} state={true} />
-          )}
-        </>
-      );
-    case 'PeopleList':
-      return <PhoneNumberListPage airCall={airCall} />;
+      case 'Call':
+        return (
+          <>
+            <StateChangeComponent airCall={airCall} />
+            {airCall.length > 0 && airCallState === 'Activity' ? (
+              <CallListAndCallItem airCall={airCall} state={false} />
+            ) : (
+              <CallListAndCallItem airCall={airCall} state={true} />
+            )}
+          </>
+        );
+      case 'PeopleList':
+        return <PhoneNumberListPage airCall={airCall} />;
 
-    case 'Setting':
-      return <SettingPage />;
+      case 'KeyPad':
+        return <KeyPadComponent />;
 
-    default:
-      return <Typography>No content available</Typography>;
+      case 'Setting':
+        return <SettingPage />;
+
+      default:
+        return <Typography>No content available</Typography>;
     }
   };
   return (
