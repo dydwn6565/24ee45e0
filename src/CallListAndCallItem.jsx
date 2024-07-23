@@ -1,16 +1,16 @@
 // src/components/CallListAndCallItem.js
 import React, { useEffect, useState } from 'react';
 import '../src/css/CallListAndCallItem.css';
-import { Box } from '@mui/system';
-import CallItem from './CallItem.jsx';
 import CallMenu from './CallMenu.jsx';
-import { Divider, Typography } from '@mui/material';
+import { currentAirCallHeaderStateAtom } from './atom/aircall.atoms.jsx';
+import { useAtomValue } from 'jotai';
+import RenderGropuedCallsComponent from './RenderGropuedCallsComponent.jsx';
 
 const CallListAndCallItem = ({ airCall, state }) => {
   const [filteredAirCall, setFilteredAirCall] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedCallId, setSelectedCallId] = useState(null);
-
+  const headerAirCallState = useAtomValue(currentAirCallHeaderStateAtom);
   useEffect(() => {
     const filteredAirCallByState = () => {
       const filteredData = airCall.filter((item) => item.is_archived === state);
@@ -18,28 +18,6 @@ const CallListAndCallItem = ({ airCall, state }) => {
     };
     filteredAirCallByState();
   }, [airCall, state]);
-
-  const getDateOnly = (isoDateString) => {
-    const date = new Date(isoDateString);
-    const year = date.getUTCFullYear();
-    const monthNames = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-    const month = monthNames[date.getUTCMonth()];
-    const day = String(date.getUTCDate()).padStart(2, '0');
-    return `${month} ${day}, ${year}`;
-  };
 
   const handleClick = (event, callId) => {
     setAnchorEl(event.currentTarget);
@@ -79,26 +57,21 @@ const CallListAndCallItem = ({ airCall, state }) => {
   };
 
   const open = Boolean(anchorEl);
-  const groupedCallsByDate = filteredAirCall.reduce((acc, call) => {
-    const dateKey = getDateOnly(call.created_at);
-    const fromToKey = `${call.from}-${call.to}`;
-
-    if (!acc[dateKey]) {
-      acc[dateKey] = {};
-    }
-    if (!acc[dateKey][call.call_type]) {
-      acc[dateKey][call.call_type] = {};
-    }
-    if (!acc[dateKey][call.call_type][fromToKey]) {
-      acc[dateKey][call.call_type][fromToKey] = [];
-    }
-    acc[dateKey][call.call_type][fromToKey].push(call);
-    return acc;
-  }, {});
 
   return (
     <div>
-      {Object.entries(groupedCallsByDate).map(([date, callTypes]) => (
+      {headerAirCallState === 'InBox' ? (
+        <RenderGropuedCallsComponent
+          filteredAirCall={filteredAirCall}
+          handleClick={handleClick}
+        />
+      ) : (
+        <RenderGropuedCallsComponent
+          filteredAirCall={airCall}
+          handleClick={handleClick}
+        />
+      )}
+      {/* {Object.entries(groupByDate(filteredAirCall)).map(([date, callTypes]) => (
         <div key={date}>
           <Box className="divide-line">
             <Divider className="dot-divider" />
@@ -123,7 +96,7 @@ const CallListAndCallItem = ({ airCall, state }) => {
             </div>
           ))}
         </div>
-      ))}
+      ))} */}
       <CallMenu
         anchorEl={anchorEl}
         open={open}

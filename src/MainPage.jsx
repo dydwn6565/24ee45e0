@@ -8,7 +8,6 @@ import StateChangeComponent from './StateChangeComponent.jsx';
 const MainPage = () => {
   const [airCall, setAirCall] = useState([]);
   const airCallState = useAtomValue(airCallActiveStepAtom);
-
   useEffect(() => {
     const getAirCallData = async () => {
       try {
