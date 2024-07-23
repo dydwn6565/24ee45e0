@@ -1,17 +1,18 @@
 header {
 
   margin: 0 auto;
-  padding: 20px;
+  padding: 5px;
   display: flex;
 
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 header svg {
   display: block;
-  width: 50%; height: 50%;
+  width: 40%; height: 50%;
+  margin-right: -40px;
 }
 
 .header-left-container {
@@ -20,12 +21,14 @@ header svg {
 }
 
 .header-title {
-  margin-right: -120px;
+  font-size: 23px;
+  font-weight: 700;
 }
 
 .header-right-container { 
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  width: 250px;
   align-items: center;
   gap: 10px;
 }
