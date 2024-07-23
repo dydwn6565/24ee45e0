@@ -1,7 +1,7 @@
 import React from 'react'
 import { atom } from "jotai";
 
-export const airCallActiveStepAtom = atom("Activity");
+export const airCallActiveStepAtom = atom("Archive");
 
 export const airCallActiveHandleAtom = atom(null, (get, set) => {
   let activeStep = get(airCallActiveStepAtom);

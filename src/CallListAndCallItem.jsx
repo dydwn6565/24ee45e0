@@ -6,7 +6,7 @@ import { BsTelephoneInboundFill } from "react-icons/bs";
 import { PiDotsThreeVerticalThin } from "react-icons/pi";
 
 
-function CallListAndCallItem({airCall, archived}) {
+const CallListAndCallItem = ({airCall, archived}) => {
     const [filteredAirCall, setFilteredAirCall] = useState();
 
     useEffect(()=>{
@@ -35,14 +35,13 @@ function CallListAndCallItem({airCall, archived}) {
         };
         return date.toLocaleTimeString('en-US', options);
       };
+      
   return (
     <div>
       {filteredAirCall?.length > 0 ? (
         filteredAirCall.map((activity, index) => {
         const previousActivity = index > 0 ? airCall[index - 1] : null;
-
         const currentDate = getDateOnly(activity.created_at);
-        console.log(currentDate);
         const previousDate = previousActivity ? getDateOnly(previousActivity.created_at) : null;
 
         return (
@@ -69,7 +68,7 @@ function CallListAndCallItem({airCall, archived}) {
                     </div>
                     <div className='call-container-right'>
                         <PiDotsThreeVerticalThin />
-                        <div>Time: {getTimeOnly(activity.created_at)}</div>
+                        <div>{getTimeOnly(activity.created_at)}</div>
                         
                     </div>
                 </div>

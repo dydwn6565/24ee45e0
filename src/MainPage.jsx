@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import CallListAndCallItem from './CallListAndCallItem';
+import CallListAndCallItem from './CallListAndCallItem.jsx';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { airCallActiveHandleAtom, airCallActiveStepAtom } from './atom/aircall.atoms.tsx';
+import { airCallActiveHandleAtom, airCallActiveStepAtom } from './atom/aircall.atoms.jsx';
 import './css/ActivityFeedPage.css'
+import StateChangeComponent from './StateChangeComponent.jsx';
 
-const ActivityFeedPage = () => {
+const MainPage = () => {
     const [airCall, setAirCall] = useState([]);
     const airCallState = useAtomValue(airCallActiveStepAtom);
-    const updateAirCallState = useSetAtom(airCallActiveHandleAtom);
+    
     useEffect(() => {
         const getAirCallData = async () => {
         try {
@@ -23,14 +24,14 @@ const ActivityFeedPage = () => {
         }
         };
         getAirCallData();
-    }, []); 
+    }, [airCallState]); 
 
   return (
     <div className='activity-feed-page-container'>
+        <StateChangeComponent airCall={airCall} />
         {airCall.length > 0 && airCallState === "Activity" ? <CallListAndCallItem airCall={airCall} archived = {false}/> : <CallListAndCallItem airCall={airCall} archived = {true}/> }
-    
   </div>
   );
 };
 
-export default ActivityFeedPage;
+export default MainPage;
