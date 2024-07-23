@@ -24,7 +24,7 @@ const MainPage = () => {
         }
         };
         getAirCallData();
-    }, [airCallState]); 
+    }, [airCallState, airCall]); 
 
   return (
     <div className='activity-feed-page-container'>

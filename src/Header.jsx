@@ -1,10 +1,11 @@
 import React from 'react';
-import { airCallActiveStepAtom } from './atom/aircall.atoms';
-import { useAtomValue } from 'jotai';
+import { airCallActiveHandleAtom, airCallActiveStepAtom } from './atom/aircall.atoms';
+import { useAtomValue, useSetAtom } from 'jotai';
 import './css/header.css'; // CSS 파일 임포트
 
 const Header = () => {
   const airCallState = useAtomValue(airCallActiveStepAtom);
+  const updateAirCallState = useSetAtom(airCallActiveHandleAtom);
   return (
     <header className="header">
       <div className='header-left-container'>
@@ -16,7 +17,7 @@ const Header = () => {
         <div className='header-title'>{airCallState}</div>
       </div>
       <div className='header-right-container'>
-        {airCallState === "Archive" ? <p>Activity</p> : <p>Archive</p>}
+        {airCallState === "Archive" ? <p onClick={()=>updateAirCallState(airCallState === "Activity")}>Activity</p> : <p onClick={()=>updateAirCallState(airCallState === "Archive")}>Archive</p>}
         <div className='header-inbox'>InBox</div>
         <div className='header-all-calls'>All calls</div>
       </div>
