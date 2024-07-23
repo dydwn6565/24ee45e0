@@ -2,7 +2,7 @@ import { atom } from 'jotai';
 
 export const airCallActiveStepAtom = atom('Archive');
 export const currentAirCallHeaderStateAtom = atom('InBox');
-export const currentAirCallFooterStateAtom = atom('Call');
+export const currentAirCallFooterStateAtom = atom('PeopleList');
 
 export const airCallActiveHandleAtom = atom(null, (get, set) => {
   let activeStep = get(airCallActiveStepAtom);
