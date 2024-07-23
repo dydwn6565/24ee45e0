@@ -15,8 +15,10 @@
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.4",
+    "jotai": "^2.9.0",
     "react": "18",
-    "react-dom": "18"
+    "react-dom": "18",
+    "react-icons": "^5.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

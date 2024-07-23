@@ -1,0 +1,32 @@
+.call-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    margin: 15px auto; 
+    padding: 20px; 
+    width: 300px;
+}
+
+.call-container-left {
+    display: flex;
+    gap: 15px;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.call-container-left-infomation > div {
+    margin-bottom: 5px; 
+}
+
+.call-container-left-infomation > div:last-child {
+    margin-bottom: 0px;
+    color: grey; 
+}
+
+.call-container-right {
+    display: flex;
+    color: grey;
+}
