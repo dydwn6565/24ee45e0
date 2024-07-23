@@ -1,0 +1,28 @@
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    top: 90%;
+    bottom: 0;
+}
+
+.footer-color-indicator {
+    position: relative;
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%;
+    background-color: transparent; 
+    border: 1px solid lightgrey; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-color-indicator::before {
+    content: '';
+    position: absolute;
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%;
+    background-color: #3498db; 
+}
