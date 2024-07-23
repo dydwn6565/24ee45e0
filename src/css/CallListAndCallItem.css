@@ -1,27 +1,30 @@
 .call-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid lightgrey;
-    border-radius: 10px;
-    margin: 15px auto; 
-    padding: 20px; 
-    width: 300px;
+    display: flex !important;
+    justify-content: space-between !important;
+    /* align-items: center !important; */
+    border: 1px solid lightgrey !important;
+    border-radius: 10px !important;
+    margin: 15px auto !important; 
+    width: 320px;
 }
 
 .call-container-left {
     display: flex;
     gap: 15px;
     padding: 5px;
-    justify-content: center;
+    /* justify-content: flex-start !important; */
     align-items: center;
-    color: rgb(63, 61, 61);
+    color: grey;
     font-weight: 700;
     font-size: 15px;
 }
 
-.call-container-left-infomation > div {
-    margin-bottom: 5px; 
+
+
+.call-container-left-information { 
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
 }
 
 .call-container-left-infomation > div:last-child {
@@ -33,5 +36,20 @@
 
 .call-container-right {
     display: flex;
-    color: grey;
+    justify-content: center;
+    align-items: center;
+    /* color: grey; */
+}
+
+.divide-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 12px !important;
+}
+
+.dot-divider {
+    flex-grow: 1;
+    border-style: dotted;
 }

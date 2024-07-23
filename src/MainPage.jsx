@@ -29,7 +29,8 @@ const MainPage = () => {
   return (
     <div className='activity-feed-page-container'>
         <StateChangeComponent airCall={airCall} />
-        {airCall.length > 0 && airCallState === "Activity" ? <CallListAndCallItem airCall={airCall} archived = {false}/> : <CallListAndCallItem airCall={airCall} archived = {true}/> }
+        {airCall.length > 0 && airCallState === "Activity" ? <CallListAndCallItem airCall={airCall} state = {false}/> : <CallListAndCallItem airCall={airCall} state = {true}/> }
+        
   </div>
   );
 };

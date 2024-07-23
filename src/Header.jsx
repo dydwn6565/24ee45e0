@@ -1,7 +1,7 @@
 import React from 'react';
 import { airCallActiveHandleAtom, airCallActiveStepAtom } from './atom/aircall.atoms';
 import { useAtomValue, useSetAtom } from 'jotai';
-import './css/header.css'; // CSS 파일 임포트
+import './css/header.css'; 
 
 const Header = () => {
   const airCallState = useAtomValue(airCallActiveStepAtom);

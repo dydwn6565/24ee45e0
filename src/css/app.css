@@ -23,3 +23,8 @@
   padding: 20px;
 }
 
+.lightgrey-text {
+  color: grey;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}

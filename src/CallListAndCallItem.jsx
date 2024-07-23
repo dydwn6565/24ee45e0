@@ -1,20 +1,23 @@
+// src/components/CallListAndCallItem.js
 import React, { useEffect, useState } from 'react';
 import '../src/css/CallListAndCallItem.css';
-import { Divider, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { BsTelephoneInboundFill } from "react-icons/bs";
-import { PiDotsThreeVerticalThin } from "react-icons/pi";
+import CallItem from './CallItem.jsx';
+import CallMenu from './CallMenu.jsx';
+import { Divider, Typography } from '@mui/material';
 
-const CallListAndCallItem = ({ airCall, archived }) => {
+const CallListAndCallItem = ({ airCall, state }) => {
   const [filteredAirCall, setFilteredAirCall] = useState([]);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedCallId, setSelectedCallId] = useState(null);
 
   useEffect(() => {
     const filteredAirCallByState = () => {
-      const filteredData = airCall.filter((item) => item.is_archived === archived);
+      const filteredData = airCall.filter((item) => item.is_archived === state);
       setFilteredAirCall(filteredData);
     };
     filteredAirCallByState();
-  }, [airCall, archived]);
+  }, [airCall, state]);
 
   const getDateOnly = (isoDateString) => {
     const date = new Date(isoDateString);
@@ -28,15 +31,41 @@ const CallListAndCallItem = ({ airCall, archived }) => {
     return `${month}, ${day} ${year}`;
   };
 
-  const getTimeOnly = (isoDateString) => {
-    const date = new Date(isoDateString);
-    const options = {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true
-    };
-    return date.toLocaleTimeString('en-US', options);
+  const handleClick = (event, callId) => {
+    setAnchorEl(event.currentTarget);
+    setSelectedCallId(callId);
   };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setSelectedCallId(null);
+  };
+
+  const handleMenuItemClick = async (option, selectedCallId) => {
+      const bodyContent = option === "Activity" ? { is_archived: false } : { is_archived: true };
+      try {
+        const response = await fetch(`https://aircall-backend.onrender.com/activities/${selectedCallId}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(bodyContent),
+        });
+        // {console.log(bodyContent)}
+        {console.log(airCall)}
+        if (!response.ok) {
+          throw new Error('Network response was not ok.');
+        }
+      } catch(error){
+        console.error(`Error archiving call ${callId}:`, error);
+      }
+     
+    
+    console.log(`Selected option: ${option} for call ID: ${selectedCallId}`);
+    handleClose(); 
+  };
+
+  const open = Boolean(anchorEl);
 
   return (
     <div>
@@ -49,31 +78,27 @@ const CallListAndCallItem = ({ airCall, archived }) => {
           return (
             <div key={activity.id}>
               {index === 0 || currentDate !== previousDate ? (
-                <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', width: '100%' }}>
-                  <Divider sx={{ flexGrow: 1, borderStyle: 'dotted' }} />
-                  <Typography sx={{ mx: 2 }}>{currentDate}</Typography>
-                  <Divider sx={{ flexGrow: 1, borderStyle: 'dotted' }} />
+                <Box className="divide-line">
+                  <Divider className='dot-divider' />
+                  <Typography className='lightgrey-text'>{currentDate}</Typography>
+                  <Divider className='dot-divider' />
                 </Box>
               ) : null}
-              <div className='call-container'>
-                <div className='call-container-left'>
-                  <BsTelephoneInboundFill />
-                  <div className='call-container-left-information'>
-                    <div>Call From: {activity.from}</div>
-                    <div>tried to call on {activity.to}</div>
-                  </div>
-                </div>
-                <div className='call-container-right'>
-                  <PiDotsThreeVerticalThin />
-                  <div>{getTimeOnly(activity.created_at)}</div>
-                </div>
-              </div>
+              <CallItem activity={activity} onClick={handleClick} />
             </div>
           );
         })
       ) : (
         <p>Loading...</p>
       )}
+      <CallMenu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        onMenuItemClick={handleMenuItemClick}
+        selectedCallId={selectedCallId}
+        airCall={airCall}
+      />
     </div>
   );
 };
