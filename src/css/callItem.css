@@ -1,0 +1,70 @@
+/* src/css/callItem.css */
+.call-item-wrapper {
+  position: relative; /* Ensure that the hover details are positioned relative to this wrapper */
+  margin-bottom: 10px; /* Add space below each item */
+}
+
+.call-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: background-color 0.3s;
+}
+
+.call-container:hover {
+  background-color: #f5f5f5;
+}
+
+.call-container-left {
+  display: flex;
+  align-items: center;
+}
+
+.call-container-left-information {
+  margin-left: 10px;
+}
+
+.call-container-right {
+  display: flex;
+  align-items: center;
+}
+
+.lightgrey-text {
+  color: #a0a0a0;
+}
+
+.call-details-hover {
+  position: absolute; /* Align it below the button */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Ensure it appears above other elements */
+  width: 93%;
+}
+
+.call-details-hover ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.call-details-hover li {
+  padding: 8px 10px;
+  border-bottom: 1px solid #ddd;
+  color: #333;
+  font-size: 14px;
+}
+
+.call-details-hover li:last-child {
+  border-bottom: none;
+}
+
+.call-details-hover li:hover {
+  background-color: #f0f0f0; /* Highlight on hover */
+}

@@ -23,8 +23,18 @@ const CallListAndCallItem = ({ airCall, state }) => {
     const date = new Date(isoDateString);
     const year = date.getUTCFullYear();
     const monthNames = [
-      "January", "February", "March", "April", "May", "June", "July", 
-      "August", "September", "October", "November", "December"
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ];
     const month = monthNames[date.getUTCMonth()];
     const day = String(date.getUTCDate()).padStart(2, '0');
@@ -42,17 +52,20 @@ const CallListAndCallItem = ({ airCall, state }) => {
   };
 
   const handleMenuItemClick = async (option, selectedCallId) => {
-    
-    const bodyContent = option === "Archive" ? { is_archived: true } : { is_archived: false };
-    
+    const bodyContent =
+      option === 'Archive' ? { is_archived: true } : { is_archived: false };
+
     try {
-      const response = await fetch(`https://aircall-backend.onrender.com/activities/${selectedCallId}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(bodyContent),
-      });
+      const response = await fetch(
+        `https://aircall-backend.onrender.com/activities/${selectedCallId}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(bodyContent),
+        }
+      );
 
       if (!response.ok) {
         throw new Error('Network response was not ok.');
@@ -69,7 +82,7 @@ const CallListAndCallItem = ({ airCall, state }) => {
   const groupedCallsByDate = filteredAirCall.reduce((acc, call) => {
     const dateKey = getDateOnly(call.created_at);
     const fromToKey = `${call.from}-${call.to}`;
-    
+
     if (!acc[dateKey]) {
       acc[dateKey] = {};
     }
@@ -83,38 +96,28 @@ const CallListAndCallItem = ({ airCall, state }) => {
     return acc;
   }, {});
 
-  const mergedGroupedCallsByDate = Object.entries(groupedCallsByDate).reduce((acc, [date, fromToGroups]) => {
-    acc[date] = Object.entries(fromToGroups).reduce((dateAcc, [fromToKey, callTypes]) => {
-      dateAcc[fromToKey] = Object.entries(callTypes).map(([callType, calls]) => ({
-        callType,
-        count: calls.length,
-        calls
-      }));
-      return dateAcc;
-    }, {});
-    return acc;
-  }, {});
   
+
   return (
     <div>
       {Object.entries(groupedCallsByDate).map(([date, callTypes]) => (
         <div key={date}>
           <Box className="divide-line">
-            <Divider className='dot-divider' />
-            <Typography className='lightgrey-text'>{date}</Typography>
-            <Divider className='dot-divider' />
+            <Divider className="dot-divider" />
+            <Typography className="lightgrey-text">{date}</Typography>
+            <Divider className="dot-divider" />
           </Box>
           {Object.entries(callTypes).map(([callType, fromToGroups]) => (
             <div key={callType}>
-              
               {Object.entries(fromToGroups).map(([fromToKey, calls]) => {
                 return (
                   <div key={fromToKey}>
                     <CallItem
                       key={fromToKey}
-                      activity={calls[0]} 
-                      count={calls.length} 
+                      activity={calls[0]}
+                      count={calls.length}
                       onClick={handleClick}
+                      allCalls={calls}
                     />
                   </div>
                 );
@@ -122,7 +125,6 @@ const CallListAndCallItem = ({ airCall, state }) => {
             </div>
           ))}
         </div>
-      
       ))}
       <CallMenu
         anchorEl={anchorEl}

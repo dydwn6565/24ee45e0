@@ -9,7 +9,20 @@
   "private": false,
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",
@@ -24,10 +37,18 @@
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "10.1.0",
     "babel-loader": "8.1.0",
     "css-loader": "2.1.*",
+    "eslint": "7.32.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-prettier": "3.4.0",
+    "eslint-plugin-react": "7.27.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "html-loader": "0.5.*",
     "html-webpack-plugin": "3.2.*",
+    "husky": "7.0.0",
+    "prettier": "^3.3.3",
     "style-loader": "0.23.*",
     "webpack": "4.29.*",
     "webpack-cli": "3.2.*",
