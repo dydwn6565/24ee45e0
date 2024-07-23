@@ -28,7 +28,7 @@ const CallListAndCallItem = ({ airCall, state }) => {
     ];
     const month = monthNames[date.getMonth()];
     const day = String(date.getDate()).padStart(2, '0');
-    return `${month}, ${day} ${year}`;
+    return `${month} ${day}, ${year}`;
   };
 
   const handleClick = (event, callId) => {
@@ -42,52 +42,79 @@ const CallListAndCallItem = ({ airCall, state }) => {
   };
 
   const handleMenuItemClick = async (option, selectedCallId) => {
-      const bodyContent = option === "Activity" ? { is_archived: false } : { is_archived: true };
-      try {
-        const response = await fetch(`https://aircall-backend.onrender.com/activities/${selectedCallId}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(bodyContent),
-        });
-        // {console.log(bodyContent)}
-        {console.log(airCall)}
-        if (!response.ok) {
-          throw new Error('Network response was not ok.');
-        }
-      } catch(error){
-        console.error(`Error archiving call ${callId}:`, error);
+    const bodyContent = option === "Archive" ? { is_archived: false } : { is_archived: true };
+    try {
+      const response = await fetch(`https://aircall-backend.onrender.com/activities/${selectedCallId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bodyContent),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok.');
       }
-     
-    
+    } catch (error) {
+      console.error(`Error updating call ${selectedCallId}:`, error);
+    }
+
     console.log(`Selected option: ${option} for call ID: ${selectedCallId}`);
-    handleClose(); 
+    handleClose();
   };
 
   const open = Boolean(anchorEl);
 
+  const groupedCallsByDate = filteredAirCall.reduce((acc, call) => {
+    const dateKey = getDateOnly(call.created_at);
+    
+  
+    let fromToKey = `${call.from}-${call.to}`;
+    if (!acc[dateKey]) {
+      acc[dateKey] = {};
+    }
+    if (!acc[dateKey][fromToKey]) {
+      acc[dateKey][fromToKey] = [];
+    }
+    acc[dateKey][fromToKey].push(call);
+    return acc;
+  }, {});
+
   return (
     <div>
-      {filteredAirCall.length > 0 ? (
-        filteredAirCall.map((activity, index) => {
-          const previousActivity = index > 0 ? filteredAirCall[index - 1] : null;
-          const currentDate = getDateOnly(activity.created_at);
-          const previousDate = previousActivity ? getDateOnly(previousActivity.created_at) : null;
+      <>
+      {/* {console.log(airCall)} */}
+      </>
+      {Object.keys(groupedCallsByDate).length > 0 ? (
+        
+        Object.keys(groupedCallsByDate).map((date) => {
+          const callsByFromTo = groupedCallsByDate[date];
 
           return (
-            <div key={activity.id}>
-              {index === 0 || currentDate !== previousDate ? (
-                <Box className="divide-line">
-                  <Divider className='dot-divider' />
-                  <Typography className='lightgrey-text'>{currentDate}</Typography>
-                  <Divider className='dot-divider' />
-                </Box>
-              ) : null}
-              <CallItem activity={activity} onClick={handleClick} />
+            <div key={date}>
+              <Box className="divide-line">
+                <Divider className='dot-divider' />
+                <Typography className='lightgrey-text'>{date}</Typography>
+                <Divider className='dot-divider' />
+              </Box>
+              {Object.keys(callsByFromTo).map((fromToKey) => {
+                const calls = callsByFromTo[fromToKey];
+                const callCount = calls.length;
+                const activity = calls[0]; // 대표 항목 선택
+
+                return (
+                  <CallItem
+                    key={activity.id}
+                    activity={activity}
+                    onClick={(event) => handleClick(event, activity.id)}
+                    callCount={callCount}
+                  />
+                );
+              })}
             </div>
           );
         })
+        
       ) : (
         <p>Loading...</p>
       )}
