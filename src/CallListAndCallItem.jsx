@@ -21,13 +21,14 @@ const CallListAndCallItem = ({ airCall, state }) => {
 
   const getDateOnly = (isoDateString) => {
     const date = new Date(isoDateString);
-    const year = date.getFullYear();
+    const year = date.getUTCFullYear();
+    console.log(date);
     const monthNames = [
       "January", "February", "March", "April", "May", "June", "July", 
       "August", "September", "October", "November", "December"
     ];
-    const month = monthNames[date.getMonth()];
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = monthNames[date.getUTCMonth()];
+    const day = String(date.getUTCDate()).padStart(2, '0');
     return `${month} ${day}, ${year}`;
   };
 
@@ -83,8 +84,8 @@ const CallListAndCallItem = ({ airCall, state }) => {
   return (
     <div>
       <>
-      {/* {console.log(airCall)} */}
       </>
+      
       {Object.keys(groupedCallsByDate).length > 0 ? (
         
         Object.keys(groupedCallsByDate).map((date) => {
