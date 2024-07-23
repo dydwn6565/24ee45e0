@@ -1,9 +1,9 @@
 // src/components/CallItem.jsx
 import React, { useState } from 'react';
 import { Button } from '@mui/material';
-import { BsTelephoneInboundFill } from 'react-icons/bs';
 import { PiDotsThreeVerticalThin } from 'react-icons/pi';
 import './css/callItem.css';
+import CallStatusIcon from './CallStatusIcon';
 const CallItem = ({ activity, onClick, allCalls, count }) => {
   const [isHovered, setIsHovered] = useState(false);
   const getTimeOnly = (isoDateString) => {
@@ -25,7 +25,11 @@ const CallItem = ({ activity, onClick, allCalls, count }) => {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="call-container-left">
-          <BsTelephoneInboundFill />
+          <CallStatusIcon
+            direction={activity.direction}
+            callType={activity.call_type}
+          />
+          {/* {console.log(activity)} */}
           <div className="call-container-left-information">
             <div>
               {activity.from} ({count} calls)
@@ -36,7 +40,7 @@ const CallItem = ({ activity, onClick, allCalls, count }) => {
         <div className="call-container-right">
           <PiDotsThreeVerticalThin />
           <div className="lightgrey-text">
-            {getTimeOnly(activity.created_at)}
+            {getTimeOnly(allCalls[allCalls.length - 1].created_at)}
           </div>
         </div>
       </Button>

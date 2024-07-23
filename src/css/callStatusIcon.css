@@ -1,0 +1,16 @@
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Inbound icons */
+
+.icon-missed-inbound {
+  color: red;
+}
+
+/* Outbound icons */
+
+.icon-missed-outbound {
+  color: red;
+}

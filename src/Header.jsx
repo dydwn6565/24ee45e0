@@ -2,13 +2,21 @@ import React from 'react';
 import {
   airCallActiveHandleAtom,
   airCallActiveStepAtom,
+  currentAirCallHeaderStateAtom,
+  currentAirCallHeaderStateHandleAtom,
 } from './atom/aircall.atoms';
 import { useAtomValue, useSetAtom } from 'jotai';
 import './css/header.css';
+import { Button } from '@mui/material';
 
 const Header = () => {
   const airCallState = useAtomValue(airCallActiveStepAtom);
+  const headerAirCallState = useAtomValue(currentAirCallHeaderStateAtom);
   const updateAirCallState = useSetAtom(airCallActiveHandleAtom);
+  const updateAirCallHeaderState = useSetAtom(
+    currentAirCallHeaderStateHandleAtom
+  );
+
   return (
     <header className="header">
       <div className="header-left-container">
@@ -36,8 +44,23 @@ const Header = () => {
             Archive
           </p>
         )}
-        <div className="header-inbox">InBox</div>
-        <div className="header-all-calls">All calls</div>
+        <Button
+          className={`header-inbox ${headerAirCallState === 'InBox' ? 'active' : ''}`}
+          onClick={() =>
+            updateAirCallHeaderState(headerAirCallState === 'InBox')
+          }
+        >
+          InBox
+        </Button>
+        <Button
+          variant="text"
+          className={`header-inbox ${headerAirCallState === 'AllCalls' ? 'active' : ''}`}
+          onClick={() =>
+            updateAirCallHeaderState(headerAirCallState === 'AllCalls')
+          }
+        >
+          AllCalls
+        </Button>
       </div>
     </header>
   );

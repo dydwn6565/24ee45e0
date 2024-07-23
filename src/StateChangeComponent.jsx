@@ -1,9 +1,7 @@
 import { useAtomValue } from 'jotai';
 import React from 'react';
 import { HiOutlineArchive } from 'react-icons/hi';
-import {
-  airCallActiveStepAtom,
-} from './atom/aircall.atoms';
+import { airCallActiveStepAtom } from './atom/aircall.atoms';
 
 const StateChangeComponent = ({ airCall }) => {
   const airCallState = useAtomValue(airCallActiveStepAtom);
@@ -21,7 +19,6 @@ const StateChangeComponent = ({ airCall }) => {
       await Promise.all(
         callIds.map((call) => archiveCall(call.id, airCallState))
       );
-      // updateAirCallState(airCallState === "Archive" ? "Activity" : "Archive");
       console.log('All calls processed successfully');
     } catch (error) {
       console.error('Error processing all calls:', error);

@@ -96,8 +96,6 @@ const CallListAndCallItem = ({ airCall, state }) => {
     return acc;
   }, {});
 
-  
-
   return (
     <div>
       {Object.entries(groupedCallsByDate).map(([date, callTypes]) => (

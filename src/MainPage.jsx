@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CallListAndCallItem from './CallListAndCallItem.jsx';
 import { useAtomValue } from 'jotai';
-import {
-  airCallActiveStepAtom,
-} from './atom/aircall.atoms.jsx';
+import { airCallActiveStepAtom } from './atom/aircall.atoms.jsx';
 import './css/ActivityFeedPage.css';
 import StateChangeComponent from './StateChangeComponent.jsx';
 
