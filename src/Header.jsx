@@ -5,7 +5,7 @@ import {
   currentAirCallFooterStateAtom,
   currentAirCallHeaderStateAtom,
   currentAirCallHeaderStateHandleAtom,
-} from './atom/aircall.atoms';
+} from './atom/aircall.atoms.jsx';
 import { useAtomValue, useSetAtom } from 'jotai';
 import './css/header.css';
 import { Button } from '@mui/material';

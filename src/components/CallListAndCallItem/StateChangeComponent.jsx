@@ -2,9 +2,9 @@ import { useAtomValue } from 'jotai';
 import React, { useState } from 'react';
 import { HiOutlineArchive } from 'react-icons/hi';
 import { Button } from '@mui/material';
-import { airCallActiveStepAtom } from '../../atom/aircall.atoms';
+import { airCallActiveStepAtom } from '../../atom/aircall.atoms.jsx';
 import { API_BASE_URL } from '../../utils/api';
-import SnackBar from '../SnackBar/SnackBar';
+import SnackBar from '../SnackBar/SnackBar.jsx';
 
 const StateChangeComponent = ({ airCall }) => {
   const airCallState = useAtomValue(airCallActiveStepAtom);
