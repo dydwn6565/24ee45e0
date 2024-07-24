@@ -1,7 +1,7 @@
 .call-item-wrapper {
   position: relative;
   margin-bottom: 10px;
-  width: 100%; /* Ensure all items have the same width */
+  width: 100%; 
   box-sizing: border-box;
 }
 
@@ -14,7 +14,7 @@
   border-radius: 4px;
   background-color: #fff;
   transition: background-color 0.3s;
-  width: 90%; /* Ensure all containers have the same width */
+  width: 90%; 
   box-sizing: border-box;
   height: 90px;
 }
@@ -39,16 +39,11 @@
   display: flex;
   align-items: center;
 }
-/* .call-container-left-information-call{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-} */
+
 .call-info {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+
 }
 .call-container-right {
   display: flex;
@@ -90,18 +85,18 @@
 }
 
 .call-details-hover li:hover {
-  background-color: #f0f0f0; /* Highlight on hover */
+  background-color: #f0f0f0; 
 }
 
 .call-count-circle {
   display: inline-block;
-  width: 20px; /* Adjust the size as needed */
+  width: 20px; 
   height: 20px;
-  margin-left: 5px; /* Adjust the spacing as needed */
+  margin-left: 5px; 
   border-radius: 50%;
   background-color: red;
   color: white;
-  font-size: 12px; /* Adjust the font size as needed */
+  font-size: 12px; 
   display: flex;
   align-items: center;
   justify-content: center;

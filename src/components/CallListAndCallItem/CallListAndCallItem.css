@@ -1,7 +1,6 @@
 .call-container {
   display: flex !important;
   justify-content: space-between !important;
-  /* align-items: center !important; */
   border: 1px solid lightgrey !important;
   border-radius: 10px !important;
   margin: 15px auto !important;

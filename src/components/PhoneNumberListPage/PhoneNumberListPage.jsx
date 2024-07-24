@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider } from '@mui/material'; // Material-UI의 Divider 사용
+import { Divider } from '@mui/material'; 
 import './PhoneNumberListPage.css';
 
 const PhoneNumberListPage = ({ airCall }) => {

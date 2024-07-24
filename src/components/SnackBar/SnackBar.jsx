@@ -6,7 +6,7 @@ const SnackBar = ({ open, onClose, message, severity }) => {
   return (
     <Snackbar
       open={open}
-      autoHideDuration={6000} // Snackbar 자동으로 6초 후 사라짐
+      autoHideDuration={6000} 
       onClose={onClose}
     >
       <Alert
