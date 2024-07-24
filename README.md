@@ -1,114 +1,205 @@
-Aircall React Application
-Overview
-The goal of this project is to create a small ReactJS application to display a list of calls, view call details, and manage archived calls. This README provides an overview of the features, installation instructions, API usage, and other relevant information to help you understand and work with the project.
+# Aircall
 
-User Stories
-#	User Story	Description	Estimate (hours)
-1	Project Setup	Set up the project environment with the necessary tools and dependencies.	0.5
-2	Component Hierarchy	Decide the structure of the components.	0.5
-3	Design a Workflow Chart	Design a workflow chart to visually represent and streamline the project process.	0.5
-4	Create Activity Feed Page	Create a page displaying a list of unarchived calls.	2
-5	Display Activity Details on Activity Feed Page	Display detailed information about each unarchived call on the activity feed page.	1
-6	Create Archive Page	Create a page displaying a list of archived calls.	2
-7	Display Archive Details on Archived Page	Display detailed information about each archived call on the archive page.	1
-8	Button to Archive All Calls and Unarchive All Calls	Implement functionality to archive all calls and unarchive all calls.	0.5
-9	Unit Test	Analyze and write unit tests for the application.	1
-10	Deploy the Application	Deploy the application to a hosting platform (e.g., Vercel).	1
-User Story Details
-User Story 1 - Project Setup
-Objective: Set up the project environment for development.
+## User Stories
 
-Clone the Repository:
+| #  | User Story                                                | Description                                                                                                    | Estimate (hour) |
+|----|-----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|-----------------|
+| 1  | Project Setup                                             | This story is about how to set up a project with pre-requirement.                                              | 0.5             |
+| 2  | Component Hierarchy                                       | This story is to decide the structure of the components.                                                         | 0.5             |
+| 3  | Design a Workflow Chart                                  | This story is to design the workflow chart.                                                                     | 0.5             |
+| 4  | Create Activity Feed Page                                | This story is to create an activity feed page with an activity feed call list.                                 | 2               |
+| 5  | Display Activity Detail on Activity Feed Page            | This story is to display activity details on the create activity feed page.                                     | 1               |
+| 6  | Create Archive Page                                      | This story is to create an archive page with an archive call list.                                              | 2               |
+| 7  | Display Archive Details on Archived Page                 | This story is to create an archive detail page.                                                                 | 1               |
+| 8  | Button to Archive All Calls and Unarchive All Calls       | This story is to create the function to handle all archive calls to unarchive calls vice versa.                 | 0.5             |
+| 9  | Unit Test                                                 | This story is to analyze the unit test point and state it.                                                        | 1               |
+| 10 | Deploy the Application                                   | This story is about deploying this application on Vercel.                                                        | 1               |
 
-bash
-Copy code
-git clone https://github.com/speer-technologies/aircall.git
-cd aircall
-Set Up Node Version:
+## User Story 2 - Component Hierarchy (0.5 hour)
 
-bash
-Copy code
-nvm install 16
-nvm use 16
-Install Project Dependencies:
+This user story is to create and manage an activity feed page that displays a list of calls, both archived and unarchived.
 
-bash
-Copy code
-npm install -g yarn
-yarn install
-Enhance UX/UI with Material UI:
+### Component Hierarchy
 
-bash
-Copy code
-yarn add @mui/material @emotion/react @emotion/styled
-Update React Version:
+- **App**: The main application component that houses the entire app structure.
+- **Header**: Displays the header of the application with navigation controls.
+- **ActivityFeedPage**: The page displaying unarchived calls.
+  - **CallList**: Displays a list of calls.
+  - **CallItem**: Displays details for each call.
+  - **ArchiveControls**: Contains buttons to archive/unarchive all calls.
+- **ArchivedCallsPage**: The page displaying archived calls.
+  - **CallList**: Displays a list of archived calls.
+  - **CallItem**: Displays details for each archived call.
+  - **ArchiveControls**: Contains buttons to archive/unarchive all calls.
 
-bash
-Copy code
-yarn add react@18 react-dom@18
-Install react-icons:
+## User Story 3 - Design a Workflow Chart (0.5 hour)
 
-bash
-Copy code
-yarn add react-icons
-Install Jotai for State Management:
+This story is to design a workflow chart to visually represent and streamline the process within the project.
 
-bash
-Copy code
-yarn add jotai
-Install and Configure ESLint:
+## User Story 4 - Create Activity Feed Page (2 hours)
 
-bash
-Copy code
-yarn add eslint@7.32.0 prettier@2.3.2 eslint-config-prettier@8.3.0 eslint-plugin-prettier@3.4.0 eslint-plugin-react@7.24.0 --dev
-yarn add eslint@7.32.0 eslint-plugin-react@7.27.1 babel-eslint@10.1.0 prettier --dev
-yarn add eslint-plugin-react-hooks --dev
-npx husky install
-npx husky add .husky/pre-commit "yarn lint"
-User Story 2 - Component Hierarchy
-Objective: Define the component hierarchy for the application.
+This story is to create an activity feed page that displays a list of activity calls. The page should include a simple list of all unarchived calls.
 
-App: The main application component.
-Header: Displays the header with navigation controls.
-ActivityFeedPage: Displays unarchived calls.
-CallList & CallItem: List and detail of unarchived calls.
-ArchiveControls: Buttons to archive/unarchive all calls.
-ArchivedCallsPage: Displays archived calls.
-CallList & CallItem: List and detail of archived calls.
-ArchiveControls: Buttons to archive/unarchive all calls.
-User Story 3 - Design a Workflow Chart
-Objective: Design a workflow chart to streamline the project process.
+### HTTP Request
 
-User Story 4 - Create Activity Feed Page
-Objective: Create a page to display a list of unarchived calls.
+- **Endpoint:** `https://aircall-backend.onrender.com/activities`
+- **Method:** GET
+- **Description:** This HTTP request is to get the calls.
 
-API Endpoint: https://aircall-backend.onrender.com/activities
-Method: GET
-Success Response: Returns a list of calls with details.
-User Story 5 - Display Activity Details
-Objective: Display detailed information about unarchived calls.
+### HTTP Response Success
 
-User Story 6 - Create Archive Page
-Objective: Create a page to display a list of archived calls.
+- **Status:** 200
+- **Description:** This HTTP response returns the calls list.
+- **Parameter:**
+    json
+  [
+    {
+      "direction": "string",
+      "from": integer,
+      "to": integer,
+      "via": integer,
+      "duration": integer,
+      "is-archived": boolean,
+      "call_type": "string",
+      "id": "string",
+      "created_at": "string",
+      "price": integer
+    }
+  ]
 
-API Endpoint: https://aircall-backend.onrender.com/activities
-Method: GET
-Success Response: Returns a list of archived calls with details.
-User Story 7 - Display Archive Details
-Objective: Display detailed information about archived calls.
+## HTTP Response Error
 
-User Story 8 - Archive and Unarchive All Calls
-Objective: Implement functionality to archive and unarchive all calls.
+### Status
+**500 (Internal Server Error)**  
+Error occurs while the server is in process to respond to the client’s request.  
+    json
+{
+    "status": 500
+}
 
-API Endpoint: https://aircall-backend.onrender.com/activities/<call_id>
-Method: PATCH
-Success Response: Updates call archive status.
-User Story 9 - Unit Test
-Objective: Write unit tests for the application to ensure components and functionalities work as expected.
+### User Story 5 - Display Activity Details on Activity Feed Page - 1 hour
+This story is to display the details of an unarchived call. The details include:
+- Direction (inbound or outbound)
+- Sender’s number (`from`)
+- Recipient’s number (`to`)
+- Aircall number (`via`)
+- Duration of the call
+- Call type (`call_type`)
+- Date and time (`created_at`)
+- Archive status
+- Unique identifier (`id`)
 
-Test Scenarios:
-Fetch and display a list of calls.
-Render call details correctly.
-Handle empty state.
-User Story 10 - Deploy the Application
-Objective: Deploy the application to a hosting platform like Vercel.
+### User Story 6 - Create Archive Page - 2 hours
+This user story is to create an archive page that displays a list of archived calls. The page should include a simple list of all archived calls.
+
+#### HTTP Request
+
+**EndPoint**  
+`https://aircall-backend.onrender.com/activities`
+
+**Method**  
+GET
+
+**Description**  
+This HTTP request is to get the calls.
+
+#### HTTP Response Success
+
+**Status**  
+200
+
+**Description**  
+This HTTP response returns the calls list.  
+    json
+[
+    {
+        "direction": "string",
+        "from": integer,
+        "to": integer,
+        "via": integer,
+        "duration": integer,
+        "is-archived": boolean,
+        "call_type": "string",
+        "id": "string",
+        "created_at": string,
+        "price": integer
+    }
+]
+
+## HTTP Response Error
+
+### Status
+**500 (Internal Server Error)**  
+Error occurs while the server is in process to respond to the client’s request.  
+    json
+{
+    "status": 500
+}
+
+### User Story 7 - Display Archive Details on Archived Page - 1 hour
+This story is to display the details of an archived call. The details include:
+- Direction (inbound or outbound)
+- Sender’s number (`from`)
+- Recipient’s number (`to`)
+- Aircall number (`via`)
+- Duration of the call
+- Call type (`call_type`)
+- Date and time (`created_at`)
+- Archive status
+- Unique identifier (`id`)
+
+### User Story 8 - Button to Archive All Calls and Unarchive All Calls - 0.5 hour
+This story is to change all unarchived calls to archived calls and vice versa.
+
+#### HTTP Request
+
+**EndPoint**  
+`https://aircall-backend.onrender.com/activities/<call_id>`
+
+**Method**  
+PATCH
+
+**Description**  
+This HTTP request is to update the calls.
+
+#### HTTP Response Success
+
+**Status**  
+200
+
+**Description**  
+This HTTP response returns the calls list.  
+    json
+[
+    {
+        "direction": "string",
+        "from": integer,
+        "to": integer,
+        "via": integer,
+        "duration": integer,
+        "is-archived": boolean,
+        "call_type": "string",
+        "id": "string",
+        "created_at": string,
+        "price": integer
+    }
+]
+
+### Status
+**500 (Internal Server Error)**  
+Error occurs while the server is in process to respond to the client’s request.  
+    json
+{
+    "status": 500
+}
+
+### User Story 9 - Unit Test - 1 hour
+This user story involves writing unit tests for the React application. The goal is to ensure that the components and functionalities are thoroughly tested to verify they work as expected and to catch any potential bugs or issues early in the development process. The unit tests should cover various scenarios, including edge cases, to ensure robustness and reliability of the application.
+
+**Test Scenarios:**
+- **Data Fetching:** Verify that the component correctly fetches and displays a list of calls from the API.
+- **Rendering:** Confirm that each call is rendered with the correct details, including `from`, `to`, `direction`, `created_at`, and `call_type`.
+- **Empty State:** Check how the component handles cases where no calls are available.
+
+### User Story 10 - Deploy the Application - 1 hour
+This user story involves deploying the React application to a hosting platform to make it accessible online. The goal is to ensure that the application is correctly deployed, fully functional, and available for review by stakeholders or recruiters.
