@@ -50,7 +50,7 @@ cd aircall
 nvm install 16
 nvm use 16
 
-### Install Project Dependencies with Yarn
+## Install Project Dependencies with Yarn
 
 **Given:** A `package.json` file with project dependencies is present.  
 **When:** I run the `yarn install` command.  
@@ -60,7 +60,7 @@ nvm use 16
 npm install -g yarn
 yarn install
 
-### Enhance UX/UI with Material UI
+## Enhance UX/UI with Material UI
 
 **Given:** A decision to use Material UI for improving the user experience and interface.  
 **When:** I install Material UI and integrate it into the project.  
@@ -69,7 +69,7 @@ yarn install
 ``bash
 yarn add @mui/material @emotion/react @emotion/styled
 
-### Update React from version 16 to 18
+## Update React from version 16 to 18
 
 **Given:** The skeleton project was using React version 16, which did not support some needed features.  
 **When:** I updated React to version 18.  
@@ -78,7 +78,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 ``bash
 yarn add react@18 react-dom@18
 
-### Install "react-icons"
+## Install "react-icons"
 
 **Given:** The decision to use Material UI for improving the user experience and interface, including its icon components.  
 **When:** I found that the icons I needed were not available in Material UI, so I decided to use `react-icons` instead.  
@@ -87,7 +87,7 @@ yarn add react@18 react-dom@18
 ``bash
 yarn add react-icons
 
-### Install "jotai"
+## Install "jotai"
 
 **Given:** The need for global state management in the project.  
 **When:** I installed Jotai and used it to manage global state by utilizing atoms.  
@@ -96,7 +96,7 @@ yarn add react-icons
 ``bash
 yarn add jotai
 
-### Install ESLint
+## Install ESLint
 
 **Given:** The need to set up code linting and formatting tools, and to enforce linting rules before commits.
 
@@ -178,7 +178,7 @@ This user story is to create a MainPage that displays a list of activity calls. 
 - **Method**: GET
 - **Description**: This HTTP request retrieves a list of calls.
 
-#### HTTP Response Success
+### HTTP Response Success
 
 - **Status**: 200 OK
 - **Description**: Returns a list of calls.
@@ -219,7 +219,7 @@ In this story, the functionality is implemented to change all calls that are not
 **Description**: This HTTP request updates the status of calls to archived.  
 **Parameter**: `/1`
 
-### HTTP Response Success
+## HTTP Response Success
 
 **Status**: 200 OK  
 **Description**: This HTTP response returns the updated list of calls.  
@@ -254,14 +254,14 @@ In this story, the functionality is implemented to change all calls that are not
 
 In this story, the goal is to create a `CallListAndCallItem` component that displays different icons for each call type (inbound, outbound, missed, answered) and differentiates them based on the `from` and `to` fields.
 
-### HTTP Request
+## HTTP Request
 
 **EndPoint**: `https://aircall-backend.onrender.com/activities`  
 **Method**: `PATCH`  
 **Description**: This HTTP request updates the status of calls.  
 **Parameter**: `/1`
 
-### HTTP Response Success
+## HTTP Response Success
 
 **Status**: 200 OK  
 **Description**: This HTTP response returns the updated list of calls.  
