@@ -36,9 +36,6 @@ const CallItem = ({ activity, onClick, allCalls, count }) => {
               <div className="call-info">
                 <div>{activity.from} </div>
                 {count > 1 && (
-                  // <div className="call-info-missed-call">
-                  //   <div className="call-count-circle">{count}</div>
-                  // </div>
                   <CallCountCircle count={count} />
                 )}
               </div>

@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 
-export const airCallActiveStepAtom = atom('Archive');
+export const airCallActiveStepAtom = atom('Activity');
 export const currentAirCallHeaderStateAtom = atom('InBox');
 export const currentAirCallFooterStateAtom = atom('Call');
 export const colorAtom = atom('blue');
