@@ -4,6 +4,7 @@ import CallMenu from './CallMenu.jsx';
 import { currentAirCallHeaderStateAtom } from '../../atom/aircall.atoms.jsx';
 import { useAtomValue } from 'jotai';
 import RenderGropuedCallsComponent from './RenderGroupedCallsComponent.jsx';
+import { API_BASE_URL } from '../../utils/api.js';
 
 const CallListAndCallItem = ({ airCall, state }) => {
   const [filteredActivityCall, setFilteredActivityCall] = useState([]);
@@ -41,7 +42,7 @@ const CallListAndCallItem = ({ airCall, state }) => {
     const bodyContent =
       option === 'Archive' ? { is_archived: true } : { is_archived: false };
     const response = await fetch(
-      `https://aircall-backend.onrender.com/activities/${selectedCallId}`,
+      `${API_BASE_URL}/${selectedCallId}`,
       {
         method: 'PATCH',
         headers: {

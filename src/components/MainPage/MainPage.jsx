@@ -8,6 +8,7 @@ import StateChangeComponent from '../CallListAndCallItem/StateChangeComponent.js
 import PhoneNumberListPage from '../PhoneNumberListPage/PhoneNumberListPage.jsx';
 import KeyPadComponent from '../KeyPadPage/KeyPadComponent.jsx';
 import SettingPage from '../SettingPage/SettingPage.jsx';
+import { API_BASE_URL } from '../../utils/api.js';
 
 const MainPage = () => {
   const [airCall, setAirCall] = useState([]);
@@ -17,7 +18,7 @@ const MainPage = () => {
   useEffect(() => {
     const getAirCallData = async () => {
       const response = await fetch(
-        'https://aircall-backend.onrender.com/activities'
+        `${API_BASE_URL}`
       );
       if (response.ok) {
         const result = await response.json();

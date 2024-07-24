@@ -3,6 +3,7 @@ import React from 'react';
 import { HiOutlineArchive } from 'react-icons/hi';
 import { Button } from '@mui/material';
 import { airCallActiveStepAtom } from '../../atom/aircall.atoms';
+import { API_BASE_URL } from '../../utils/api';
 
 const StateChangeComponent = ({ airCall }) => {
   const airCallState = useAtomValue(airCallActiveStepAtom);
@@ -26,7 +27,7 @@ const StateChangeComponent = ({ airCall }) => {
         ? { is_archived: false }
         : { is_archived: true };
     const response = await fetch(
-      `https://aircall-backend.onrender.com/activities/${callId}`,
+      `${API_BASE_URL}/${callId}`,
       {
         method: 'PATCH',
         headers: {
