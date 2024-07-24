@@ -124,25 +124,27 @@ This user story is to create and manage an Activity Feed Page that displays a li
 
 - **App**: The main application component that houses the entire app structure.
 
-- **Header**: Displays the header of the application with navigation controls.
+- **Header**: Displays the header of the application with the Inbox, the AllLists, and the Archive.
 
-- **ActivityFeedPage**: The page displaying unarchived calls.
-  - **CallList**: Lists all unarchived calls.
-    - **CallItem**: Displays detailed information about a call.
+- **MainPage**: The page should include a simple list of all unarchived calls.
+  - **StateChangeComponent**: The functionality is implemented to change all calls that are not archived into archived calls.
+  - **CallListAndCallItem**: component that displays different icons for each call type (inbound, outbound, missed, answered) and differentiates them based on the from and to fields.
+  - **RenderGropuedCallsComponent**: In this story, the goal is to develop a component that displays aggregated information about calls based on specific criteria: from, to, date, and call_type. The logic will involve using the reduce function to count and group calls according to these criteria.
 
-  - **ArchiveControls**: Contains buttons to archive/unarchive all calls.
-
-- **ArchivedCallsPage**: The page displaying archived calls.
-  - **CallList**: Lists all archived calls.
-    - **CallItem**: Displays detailed information about a call.
-
-  - **ArchiveControls**: Contains buttons to archive/unarchive all calls.
+    - **CallItem**: Icons to determine and display call types.
+  - **CallMenu**: This component will serve as an extension to manage the state of calls by allowing users to toggle the archive status of individual calls.
+- **Display Navigation Icons**:
+  - **PhoneNumberListPage**:  Display the current callers list.
+  - **KeyPadComponent**: Call another person.
+  - **SettingPage**: Handle global color.
 
 ## User Story 3 - Design a Workflow Chart
 
 **Duration**: 0.5 hour
 
 This user story is to design a workflow chart to visually represent and streamline the process within the project.
+
+[Example PDF](docs/SpeerTechnologiesAirCall.drawio.pdf)
 
 ### Tasks
 - Create a visual representation of the project's workflow.
