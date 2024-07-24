@@ -11,7 +11,8 @@
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "heroku-postbuild": "yarn build"
   },
   "engines": {
     "node": "16.x"
