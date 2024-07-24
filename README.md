@@ -144,7 +144,7 @@ This user story is to create and manage an Activity Feed Page that displays a li
 
 This user story is to design a workflow chart to visually represent and streamline the process within the project.
 
-[Example PDF](docs/SpeerTechnologiesAirCall.drawio.pdf)
+[FlowCart PDF](src/docs/SpeerTechnologiesAirCall.drawio.pdf)
 
 ### Tasks
 - Create a visual representation of the project's workflow.
