@@ -1,4 +1,4 @@
 .activity-feed-page-container {
   height: 570px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }

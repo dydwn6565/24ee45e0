@@ -29,7 +29,7 @@ header svg {
   width: 250px;
   align-items: center;
   gap: 10px;
-  padding-bottom: 2px;
+  padding: 3px;
 }
 
 .header-right-container > button {

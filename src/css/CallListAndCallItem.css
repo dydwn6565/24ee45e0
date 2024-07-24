@@ -12,17 +12,10 @@
   display: flex;
   gap: 15px;
   padding: 5px;
-  /* justify-content: flex-start !important; */
   align-items: center;
   color: grey;
   font-weight: 700;
   font-size: 15px;
-}
-
-.call-container-left-information {
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
 }
 
 .call-container-left-infomation > div:last-child {
@@ -36,7 +29,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* color: grey; */
 }
 
 .divide-line {
