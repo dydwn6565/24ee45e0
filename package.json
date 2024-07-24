@@ -8,11 +8,10 @@
   "license": "",
   "private": false,
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
+    "start": "node server.js",
     "build": "webpack --mode production",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "heroku-postbuild": "yarn build"
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
   "engines": {
     "node": "16.x"
