@@ -170,15 +170,15 @@ This user story is to create a MainPage that displays a list of activity calls. 
 3. **Switch Components Based on Navigation State**
    - Use a Switch statement or condition rendering to display the appropriate page component based on the current navigation state.
 
-## API Endpoints
+### API Endpoints
 
-### Get Calls
+#### Get Calls
 
 - **Endpoint**: [https://aircall-backend.onrender.com/activities](https://aircall-backend.onrender.com/activities)
 - **Method**: GET
 - **Description**: This HTTP request retrieves a list of calls.
 
-### HTTP Response Success
+#### HTTP Response Success
 
 - **Status**: 200 OK
 - **Description**: Returns a list of calls.
@@ -198,7 +198,7 @@ This user story is to create a MainPage that displays a list of activity calls. 
       "price": integer
     }
   ]
-## HTTP Response Error
+#### HTTP Response Error
 
 **Status**: 500 Internal Server Error  
 **Description**: An error occurs while the server is processing the client’s request.  
@@ -219,7 +219,7 @@ In this story, the functionality is implemented to change all calls that are not
 **Description**: This HTTP request updates the status of calls to archived.  
 **Parameter**: `/1`
 
-## HTTP Response Success
+### HTTP Response Success
 
 **Status**: 200 OK  
 **Description**: This HTTP response returns the updated list of calls.  
@@ -240,7 +240,7 @@ In this story, the functionality is implemented to change all calls that are not
     }
 ]
 
-## HTTP Response Error
+### HTTP Response Error
 
 **Status**: 500 Internal Server Error  
 **Description**: An error occurs while the server is processing the client’s request.  
