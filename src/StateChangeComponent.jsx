@@ -21,7 +21,6 @@ const StateChangeComponent = ({ airCall }) => {
   };
 
   const archiveCall = async (callId, currentCallState) => {
-
     const bodyContent =
       currentCallState === 'Archive'
         ? { is_archived: false }
@@ -42,7 +41,6 @@ const StateChangeComponent = ({ airCall }) => {
         `Failed to archive call ${callId}: ${response.statusText} - ${errorText}`
       );
     }
-  
   };
   return (
     <Button className="call-container">

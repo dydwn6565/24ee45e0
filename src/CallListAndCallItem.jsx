@@ -54,7 +54,7 @@ const CallListAndCallItem = ({ airCall, state }) => {
     if (!response.ok) {
       console.log('Network response was not ok.');
     }
-   
+
     handleClose();
   };
 
@@ -72,23 +72,22 @@ const CallListAndCallItem = ({ airCall, state }) => {
           filteredAirCall={filteredArchivedCall}
           handleClick={handleClick}
         />
-      ) :  (
+      ) : (
         <RenderGropuedCallsComponent
           filteredAirCall={airCall}
           handleClick={handleClick}
         />
       )}
-      {(
-        headerAirCallState ==='InBox' || headerAirCallState === 'Archive') &&
-      <CallMenu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        onMenuItemClick={handleMenuItemClick}
-        selectedCallId={selectedCallId}
-        airCall={airCall}
-      />}
-      
+      {(headerAirCallState === 'InBox' || headerAirCallState === 'Archive') && (
+        <CallMenu
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          onMenuItemClick={handleMenuItemClick}
+          selectedCallId={selectedCallId}
+          airCall={airCall}
+        />
+      )}
     </div>
   );
 };

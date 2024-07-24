@@ -3,6 +3,7 @@ import { Button } from '@mui/material';
 import { PiDotsThreeVerticalThin } from 'react-icons/pi';
 import './css/callItem.css';
 import CallStatusIcon from './CallStatusIcon';
+import CallCountCircle from './CallCountCircle';
 
 const CallItem = ({ activity, onClick, allCalls, count }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -16,7 +17,7 @@ const CallItem = ({ activity, onClick, allCalls, count }) => {
     };
     return date.toLocaleTimeString('en-US', options);
   };
- 
+
   return (
     <div className="call-item-wrapper">
       <Button
@@ -31,11 +32,15 @@ const CallItem = ({ activity, onClick, allCalls, count }) => {
             callType={activity.call_type}
           />
           <div className="call-container-left-information">
-            <div className='call-container-left-information-call'>
+            <div className="call-container-left-information-call">
               <div className="call-info">
                 <div>{activity.from} </div>
-                {count > 1 && <div className='call-info-missed-call'><div className="call-count-circle">{count}</div></div>}
-                
+                {count > 1 && (
+                  // <div className="call-info-missed-call">
+                  //   <div className="call-count-circle">{count}</div>
+                  // </div>
+                  <CallCountCircle count={count} />
+                )}
               </div>
             </div>
             <div className="lightgrey-text">tried to call on {activity.to}</div>

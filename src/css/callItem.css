@@ -1,8 +1,8 @@
 .call-item-wrapper {
-  position: relative; 
+  position: relative;
   margin-bottom: 10px;
   width: 100%; /* Ensure all items have the same width */
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .call-container {
@@ -38,7 +38,6 @@
 .call-info-missed-call {
   display: flex;
   align-items: center;
-
 }
 /* .call-container-left-information-call{
   display: flex;
@@ -46,7 +45,7 @@
   flex-direction: column;
   justify-content: center;
 } */
-.call-info{
+.call-info {
   display: flex;
   align-items: center;
   /* justify-content: center; */
@@ -61,16 +60,16 @@
 }
 
 .call-details-hover {
-  position: absolute; 
-  top: 100%; 
+  position: absolute;
+  top: 100%;
   left: 0;
   background-color: #fff;
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 10; 
-  width: calc(100% - 23px); 
+  z-index: 10;
+  width: calc(100% - 23px);
 }
 
 .call-details-hover ul {

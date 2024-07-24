@@ -19,7 +19,7 @@ const MainPage = () => {
   const currentHeaderMenu = useAtomValue(currentAirCallHeaderStateAtom);
   const navigationState = useAtomValue(currentAirCallFooterStateAtom);
   useEffect(() => {
-    const getAirCallData = async () => {      
+    const getAirCallData = async () => {
       const response = await fetch(
         'https://aircall-backend.onrender.com/activities'
       );
@@ -37,9 +37,10 @@ const MainPage = () => {
     case 'Call':
       return (
         <>
-          {
-            (currentHeaderMenu === 'InBox' || currentHeaderMenu === 'Archive') 
-              && <StateChangeComponent airCall={airCall} />}
+          {(currentHeaderMenu === 'InBox' ||
+            currentHeaderMenu === 'Archive') && (
+            <StateChangeComponent airCall={airCall} />
+          )}
           {airCall.length > 0 && airCallState === 'Activity' ? (
             <CallListAndCallItem airCall={airCall} state={false} />
           ) : (

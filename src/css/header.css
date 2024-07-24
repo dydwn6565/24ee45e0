@@ -44,19 +44,21 @@ header svg {
   font-weight: normal;
   text-decoration: none;
   font-size: 13px !important;
-  padding: 8px 16px; 
-  border: none; 
-  background: transparent; 
-  cursor: pointer; 
-  transition: background-color 0.3s, transform 0.2s; 
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    transform 0.2s;
 }
 
 .header-inbox:hover {
-  background-color: rgba(0, 0, 0, 0.1); 
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .header-inbox:active {
-  transform: scale(0.98); 
+  transform: scale(0.98);
 }
 
 .active {

@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box } from '@mui/system';
 import { Divider, Typography } from '@mui/material';
 import CallItem from './CallItem.jsx';
+import { useSetAtom } from 'jotai';
+import { currentTotalCallStateAtom } from './atom/aircall.atoms.jsx';
 const RenderGropuedCallsComponent = ({ filteredAirCall, handleClick }) => {
+  const updateCurrentTotalCalls = useSetAtom(currentTotalCallStateAtom);
+  useEffect(() => {
+    updateCurrentTotalCalls(filteredAirCall.length);
+  }, [filteredAirCall]);
+
   const getDateOnly = (isoDateString) => {
     const date = new Date(isoDateString);
     const year = date.getUTCFullYear();

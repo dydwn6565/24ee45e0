@@ -15,8 +15,8 @@ const PhoneNumberListPage = ({ airCall }) => {
   };
 
   const getStartDigit = (number) => {
-    const strNumber = String(number); 
-    return strNumber.replace(/\D/g, '')[0]; 
+    const strNumber = String(number);
+    return strNumber.replace(/\D/g, '')[0];
   };
 
   const uniquePhoneNumbers = getUniquePhoneNumbers(airCall);

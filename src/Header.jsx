@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   airCallActiveHandleAtom,
-  
   colorAtom,
   currentAirCallHeaderStateAtom,
   currentAirCallHeaderStateHandleAtom,
@@ -38,32 +37,28 @@ const Header = () => {
       </div>
       <div className="header-right-container">
         <Button
-          className={`header-inbox ${headerAirCallState === 'InBox' ? 'active'  : ''} ${currentColorState}`}
-          onClick={() =>{
+          className={`header-inbox ${headerAirCallState === 'InBox' ? 'active' : ''} ${currentColorState}`}
+          onClick={() => {
             updateAirCallHeaderState('InBox');
             handleAirCallState('Activity');
-          }
-          }
+          }}
         >
           InBox
         </Button>
         <Button
           variant="text"
           className={`header-inbox ${headerAirCallState === 'AllCalls' ? 'active' : ''}`}
-          onClick={() =>
-            updateAirCallHeaderState('AllCalls')
-          }
+          onClick={() => updateAirCallHeaderState('AllCalls')}
         >
           AllCalls
         </Button>
         <Button
           variant="text"
           className={`header-inbox ${headerAirCallState === 'Archive' ? 'active' : ''}`}
-          onClick={() =>{
+          onClick={() => {
             updateAirCallHeaderState('Archive');
             handleAirCallState('Archive');
-          }
-          }
+          }}
         >
           Archive
         </Button>
