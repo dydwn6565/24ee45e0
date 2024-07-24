@@ -13,6 +13,9 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
+  "engines": {
+    "node": "16.x"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
