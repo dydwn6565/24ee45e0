@@ -12,7 +12,6 @@ const CallListAndCallItem = ({ airCall, state }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedCallId, setSelectedCallId] = useState(null);
   const headerAirCallState = useAtomValue(currentAirCallHeaderStateAtom);
- 
 
   useEffect(() => {
     const filteredActivityCalls = () => {

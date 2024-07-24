@@ -3,7 +3,11 @@ import { useAtomValue } from 'jotai';
 import './MainPage.css';
 import { Typography } from '@mui/material';
 import CallListAndCallItem from '../CallListAndCallItem/CallListAndCallItem.jsx';
-import { airCallActiveStepAtom, currentAirCallFooterStateAtom, currentAirCallHeaderStateAtom } from '../../atom/aircall.atoms.jsx';
+import {
+  airCallActiveStepAtom,
+  currentAirCallFooterStateAtom,
+  currentAirCallHeaderStateAtom,
+} from '../../atom/aircall.atoms.jsx';
 import StateChangeComponent from '../CallListAndCallItem/StateChangeComponent.jsx';
 import PhoneNumberListPage from '../PhoneNumberListPage/PhoneNumberListPage.jsx';
 import KeyPadComponent from '../KeyPadPage/KeyPadComponent.jsx';
@@ -17,9 +21,7 @@ const MainPage = () => {
   const navigationState = useAtomValue(currentAirCallFooterStateAtom);
   useEffect(() => {
     const getAirCallData = async () => {
-      const response = await fetch(
-        `${API_BASE_URL}/activities`
-      );
+      const response = await fetch(`${API_BASE_URL}/activities`);
       if (response.ok) {
         const result = await response.json();
         setAirCall(result);

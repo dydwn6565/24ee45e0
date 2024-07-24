@@ -35,9 +35,7 @@ const CallItem = ({ activity, onClick, allCalls, count }) => {
             <div className="call-container-left-information-call">
               <div className="call-info">
                 <div>{activity.from} </div>
-                {count > 1 && (
-                  <CallCountCircle count={count} />
-                )}
+                {count > 1 && <CallCountCircle count={count} />}
               </div>
             </div>
             <div className="lightgrey-text">tried to call on {activity.to}</div>

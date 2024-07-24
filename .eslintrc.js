@@ -19,12 +19,12 @@ module.exports = {
   plugins: ['react'],
   rules: {
     indent: ['error', 2],
-    'linebreak-style': ['error', 'unix'],
+    'linebreak-style': ['error', 'windows'],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
     'no-undef': 'off',
     'react/prop-types': 'off',
-    'react/display-name': 'off', 
+    'react/display-name': 'off',
   },
   settings: {
     react: {
