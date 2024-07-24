@@ -30,7 +30,7 @@ The goal of this project is to create a small ReactJS application to display a l
 
 As a developer, I want to set up the project environment so that I can start building the required features with the necessary tools and dependencies.
 
-## Clone the Skeleton App Repository
+#### Clone the Skeleton App Repository
 
 **Given:** A repository URL is provided.  
 **When:** I run the git clone command.  
@@ -40,7 +40,7 @@ As a developer, I want to set up the project environment so that I can start bui
 git clone https://github.com/speer-technologies/aircall.git
 cd aircall
 
-## Set Up Node Version Using NVM
+#### Set Up Node Version Using NVM
 
 **Given:** The project requires Node.js version 16.  
 **When:** I use nvm to install and use Node.js version 16.  
@@ -50,7 +50,7 @@ cd aircall
 nvm install 16
 nvm use 16
 
-## Install Project Dependencies with Yarn
+#### Install Project Dependencies with Yarn
 
 **Given:** A `package.json` file with project dependencies is present.  
 **When:** I run the `yarn install` command.  
@@ -60,7 +60,7 @@ nvm use 16
 npm install -g yarn
 yarn install
 
-## Enhance UX/UI with Material UI
+#### Enhance UX/UI with Material UI
 
 **Given:** A decision to use Material UI for improving the user experience and interface.  
 **When:** I install Material UI and integrate it into the project.  
@@ -69,7 +69,7 @@ yarn install
 ``bash
 yarn add @mui/material @emotion/react @emotion/styled
 
-## Update React from version 16 to 18
+#### Update React from version 16 to 18
 
 **Given:** The skeleton project was using React version 16, which did not support some needed features.  
 **When:** I updated React to version 18.  
@@ -78,7 +78,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 ``bash
 yarn add react@18 react-dom@18
 
-## Install "react-icons"
+#### Install "react-icons"
 
 **Given:** The decision to use Material UI for improving the user experience and interface, including its icon components.  
 **When:** I found that the icons I needed were not available in Material UI, so I decided to use `react-icons` instead.  
@@ -87,7 +87,7 @@ yarn add react@18 react-dom@18
 ``bash
 yarn add react-icons
 
-## Install "jotai"
+#### Install "jotai"
 
 **Given:** The need for global state management in the project.  
 **When:** I installed Jotai and used it to manage global state by utilizing atoms.  
@@ -96,21 +96,21 @@ yarn add react-icons
 ``bash
 yarn add jotai
 
-## Install ESLint
+#### Install ESLint
 
 **Given:** The need to set up code linting and formatting tools, and to enforce linting rules before commits.
 
 **When:** I installed ESLint, Prettier, and related packages with specific versions for linting and formatting.
 
 ``bash
-# Install ESLint, Prettier, and related packages
+#### Install ESLint, Prettier, and related packages
 yarn add eslint@7.32.0 prettier@2.3.2 eslint-config-prettier@8.3.0 eslint-plugin-prettier@3.4.0 eslint-plugin-react@7.24.0 --dev
 yarn add eslint@7.32.0 eslint-plugin-react@7.27.1 babel-eslint@10.1.0 prettier --dev
 
-# Install ESLint plugin for React hooks
+#### Install ESLint plugin for React hooks
 yarn add eslint-plugin-react-hooks --dev
 
-# Set up Husky to enforce linting on pre-commit
+#### Set up Husky to enforce linting on pre-commit
 npx husky install
 npx husky add .husky/pre-commit "yarn lint"
 yarn lint
