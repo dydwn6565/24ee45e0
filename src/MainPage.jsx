@@ -48,7 +48,7 @@ const MainPage = () => {
           )}
         </>
       );
-    case 'PeopleList':
+    case 'PhonNumber':
       return <PhoneNumberListPage airCall={airCall} />;
 
     case 'KeyPad':
@@ -62,7 +62,7 @@ const MainPage = () => {
     }
   };
   return (
-    <div className="activity-feed-page-container">
+    <div className="activity-foot-page-container">
       <div>{renderContent()}</div>
     </div>
   );

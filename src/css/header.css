@@ -75,3 +75,13 @@ header svg {
   height: 3px;
   background-color: orange;
 }
+
+.sub-header-container {
+  height: 51px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: antiquewhite;
+  font-weight: 700;
+}

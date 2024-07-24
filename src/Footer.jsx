@@ -24,7 +24,7 @@ const Footer = () => {
           count={currentTotalCalls}
         />
       </div>
-      <GoPerson className="icon" onClick={() => updatePage('PeopleList')} />
+      <GoPerson className="icon" onClick={() => updatePage('PhonNumber')} />
       <PiDotsNineBold className="icon" onClick={() => updatePage('KeyPad')} />
       <VscSettingsGear className="icon" onClick={() => updatePage('Setting')} />
       <div className={`footer-color-indicator ${currentColor}`}></div>

@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from './Header.jsx';
 import ActivityFeedPage from './MainPage.jsx';
 import Footer from './Footer.jsx';
 import './css/app.css';
+import Header from './Header.jsx';
 const App = () => {
   return (
     <div className="container">
