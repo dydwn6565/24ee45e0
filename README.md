@@ -254,14 +254,14 @@ In this story, the functionality is implemented to change all calls that are not
 
 In this story, the goal is to create a `CallListAndCallItem` component that displays different icons for each call type (inbound, outbound, missed, answered) and differentiates them based on the `from` and `to` fields.
 
-## HTTP Request
+### HTTP Request
 
 **EndPoint**: `https://aircall-backend.onrender.com/activities`  
 **Method**: `PATCH`  
 **Description**: This HTTP request updates the status of calls.  
 **Parameter**: `/1`
 
-## HTTP Response Success
+### HTTP Response Success
 
 **Status**: 200 OK  
 **Description**: This HTTP response returns the updated list of calls.  
@@ -282,7 +282,7 @@ In this story, the goal is to create a `CallListAndCallItem` component that disp
     }
 ]
 
-## HTTP Response Error
+### HTTP Response Error
 
 **Status**: 500 Internal Server Error  
 **Description**: An error occurs while the server is processing the client’s request.  
