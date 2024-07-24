@@ -1,8 +1,8 @@
 import { useAtomValue } from 'jotai';
 import React from 'react';
 import { HiOutlineArchive } from 'react-icons/hi';
-import { airCallActiveStepAtom } from './atom/aircall.atoms';
 import { Button } from '@mui/material';
+import { airCallActiveStepAtom } from '../../atom/aircall.atoms';
 
 const StateChangeComponent = ({ airCall }) => {
   const airCallState = useAtomValue(airCallActiveStepAtom);

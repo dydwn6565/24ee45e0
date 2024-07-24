@@ -1,7 +1,7 @@
 import React from 'react';
-import './css/settingPage.css';
+import './SettingPage.css';
 import { useSetAtom } from 'jotai';
-import { currentColorHandlerAtom } from './atom/aircall.atoms';
+import { currentColorHandlerAtom } from '../../atom/aircall.atoms';
 
 function SettingPage() {
   const colors = ['blue', 'red', 'green', 'yellow'];

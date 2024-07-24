@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Box } from '@mui/system';
 import { Divider, Typography } from '@mui/material';
-import CallItem from './CallItem.jsx';
 import { useSetAtom } from 'jotai';
-import { currentTotalCallStateAtom } from './atom/aircall.atoms.jsx';
+import { currentTotalCallStateAtom } from '../../atom/aircall.atoms.jsx';
+import CallItem from './CallItem.jsx';
 const RenderGropuedCallsComponent = ({ filteredAirCall, handleClick }) => {
   const updateCurrentTotalCalls = useSetAtom(currentTotalCallStateAtom);
   useEffect(() => {

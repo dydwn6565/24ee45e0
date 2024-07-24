@@ -21,8 +21,8 @@ const Header = () => {
   );
 
   return (
-    <div >
-      {currentNavigationState === 'Call'?
+    <div>
+      {currentNavigationState === 'Call' ? (
         <header className="header">
           <div className="header-left-container">
             <svg
@@ -67,10 +67,10 @@ const Header = () => {
               Archive
             </Button>
           </div>
-          
-        </header> : <div className='sub-header-container'>{currentNavigationState}</div>
-      }
-      
+        </header>
+      ) : (
+        <div className="sub-header-container">{currentNavigationState}</div>
+      )}
     </div>
   );
 };

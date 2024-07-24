@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import CallListAndCallItem from './CallListAndCallItem.jsx';
 import { useAtomValue } from 'jotai';
-import {
-  airCallActiveStepAtom,
-  currentAirCallFooterStateAtom,
-  currentAirCallHeaderStateAtom,
-} from './atom/aircall.atoms.jsx';
-import './css/ActivityFeedPage.css';
-import StateChangeComponent from './StateChangeComponent.jsx';
+import './MainPage.css';
 import { Typography } from '@mui/material';
-import PhoneNumberListPage from './PhoneNumberListPage.jsx';
-import SettingPage from './SettingPage.jsx';
-import KeyPadComponent from './KeyPadComponent.jsx';
+import CallListAndCallItem from '../CallListAndCallItem/CallListAndCallItem.jsx';
+import { airCallActiveStepAtom, currentAirCallFooterStateAtom, currentAirCallHeaderStateAtom } from '../../atom/aircall.atoms.jsx';
+import StateChangeComponent from '../CallListAndCallItem/StateChangeComponent.jsx';
+import PhoneNumberListPage from '../PhoneNumberListPage/PhoneNumberListPage.jsx';
+import KeyPadComponent from '../KeyPadPage/KeyPadComponent.jsx';
+import SettingPage from '../SettingPage/SettingPage.jsx';
 
 const MainPage = () => {
   const [airCall, setAirCall] = useState([]);

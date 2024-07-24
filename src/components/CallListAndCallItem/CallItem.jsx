@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import { PiDotsThreeVerticalThin } from 'react-icons/pi';
-import './css/callItem.css';
+import './CallItem.css';
 import CallStatusIcon from './CallStatusIcon';
-import CallCountCircle from './CallCountCircle';
+import CallCountCircle from '../PhoneNumberListPage/CallCountCircle';
 
 const CallItem = ({ activity, onClick, allCalls, count }) => {
   const [isHovered, setIsHovered] = useState(false);

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import '../src/css/CallListAndCallItem.css';
+import './CallListAndCallItem.css';
 import CallMenu from './CallMenu.jsx';
-import { currentAirCallHeaderStateAtom } from './atom/aircall.atoms.jsx';
+import { currentAirCallHeaderStateAtom } from '../../atom/aircall.atoms.jsx';
 import { useAtomValue } from 'jotai';
-import RenderGropuedCallsComponent from './RenderGropuedCallsComponent.jsx';
+import RenderGropuedCallsComponent from './RenderGroupedCallsComponent.jsx';
 
 const CallListAndCallItem = ({ airCall, state }) => {
   const [filteredActivityCall, setFilteredActivityCall] = useState([]);

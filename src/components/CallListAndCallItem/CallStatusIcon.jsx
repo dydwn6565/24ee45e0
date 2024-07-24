@@ -5,7 +5,7 @@ import {
 } from 'react-icons/bs';
 import { HiPhoneMissedCall } from 'react-icons/hi';
 import { MdPhoneMissed } from 'react-icons/md';
-import './css/callStatusIcon.css';
+import './CallStatusIcon.css';
 
 const CallStatusIcon = ({ direction, callType }) => {
   const getIconClassName = () => {

@@ -10,7 +10,7 @@ import {
   currentTotalCallStateAtom,
 } from './atom/aircall.atoms';
 import { useAtomValue, useSetAtom } from 'jotai';
-import CallCountCircle from './CallCountCircle';
+import CallCountCircle from './components/PhoneNumberListPage/CallCountCircle';
 const Footer = () => {
   const currentColor = useAtomValue(colorAtom);
   const currentTotalCalls = useAtomValue(currentTotalCallStateAtom);

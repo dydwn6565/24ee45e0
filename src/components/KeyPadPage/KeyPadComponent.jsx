@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './css/keypadComponent.css';
+import './KeypadComponent.css';
 
 const KeyPadComponent = () => {
   const [inputNumber, setInputNumber] = useState('');
