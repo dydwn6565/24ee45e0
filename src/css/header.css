@@ -9,7 +9,7 @@ header {
 
 header svg {
   display: block;
-  width: 40%;
+  width: 53%;
   height: 50%;
   margin-right: -40px;
 }
@@ -32,23 +32,36 @@ header svg {
   padding-bottom: 2px;
 }
 
-.header-inbox {
-  box-sizing: border-box;
-  color: black;
-  font-weight: normal;
-  text-decoration: none;
+.header-right-container > button {
+  color: black !important;
+  font-size: 12px;
+  font-family: 'Nunito', sans-serif;
+  width: 30px !important;
 }
 
 .header-inbox {
-  color: black !important;
+  box-sizing: border-box;
   font-weight: normal;
   text-decoration: none;
   font-size: 13px !important;
+  padding: 8px 16px; 
+  border: none; 
+  background: transparent; 
+  cursor: pointer; 
+  transition: background-color 0.3s, transform 0.2s; 
+}
+
+.header-inbox:hover {
+  background-color: rgba(0, 0, 0, 0.1); 
+}
+
+.header-inbox:active {
+  transform: scale(0.98); 
 }
 
 .active {
-  font-weight: 700 !important;
-  position: relative !important;
+  font-weight: 700;
+  position: relative;
 }
 
 .active::after {

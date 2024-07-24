@@ -36,18 +36,18 @@ const Header = () => {
       </div>
       <div className="header-right-container">
         {airCallState === 'Archive' ? (
-          <p onClick={() => updateAirCallState(airCallState === 'Activity')}>
+          <Button onClick={() => updateAirCallState(airCallState === 'Activity')}>
             Activity
-          </p>
+          </Button>
         ) : (
-          <p onClick={() => updateAirCallState(airCallState === 'Archive')}>
+          <Button onClick={() => updateAirCallState(airCallState === 'Archive')}>
             Archive
-          </p>
+          </Button>
         )}
         <Button
           className={`header-inbox ${headerAirCallState === 'InBox' ? 'active' : ''}`}
           onClick={() =>
-            updateAirCallHeaderState(headerAirCallState === 'InBox')
+            updateAirCallHeaderState('InBox')
           }
         >
           InBox
@@ -56,7 +56,7 @@ const Header = () => {
           variant="text"
           className={`header-inbox ${headerAirCallState === 'AllCalls' ? 'active' : ''}`}
           onClick={() =>
-            updateAirCallHeaderState(headerAirCallState === 'AllCalls')
+            updateAirCallHeaderState('AllCalls')
           }
         >
           AllCalls

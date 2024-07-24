@@ -6,6 +6,10 @@
   bottom: 0;
 }
 
+.footer-container > svg {
+  cursor: pointer;
+  font-size: 20px;
+}
 .footer-color-indicator {
   position: relative;
   width: 30px;

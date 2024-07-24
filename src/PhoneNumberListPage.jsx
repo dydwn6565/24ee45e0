@@ -15,13 +15,12 @@ const PhoneNumberListPage = ({ airCall }) => {
   };
 
   const getStartDigit = (number) => {
-    const strNumber = String(number); // 숫자를 문자열로 변환
-    return strNumber.replace(/\D/g, '')[0]; // 숫자가 아닌 문자 제거 후 첫 번째 숫자 반환
+    const strNumber = String(number); 
+    return strNumber.replace(/\D/g, '')[0]; 
   };
 
   const uniquePhoneNumbers = getUniquePhoneNumbers(airCall);
 
-  // 전화번호를 시작 숫자에 따라 정렬
   const sortedPhoneNumbers = [...uniquePhoneNumbers].sort((a, b) => {
     return getStartDigit(a).localeCompare(getStartDigit(b));
   });
