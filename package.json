@@ -8,7 +8,7 @@
   "license": "",
   "private": false,
   "scripts": {
-    "start": "node server.js",
+    "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
@@ -40,6 +40,7 @@
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@webpack-cli/serve": "^2.0.5",
     "babel-eslint": "10.1.0",
     "babel-loader": "8.1.0",
     "css-loader": "2.1.*",
@@ -53,8 +54,8 @@
     "husky": "7.0.0",
     "prettier": "^3.3.3",
     "style-loader": "0.23.*",
-    "webpack": "4.29.*",
-    "webpack-cli": "3.2.*",
-    "webpack-dev-server": "4"
+    "webpack": "4.44.2",
+    "webpack-cli": "3.3.12",
+    "webpack-dev-server": "3.11.2"
   }
 }
