@@ -2,6 +2,7 @@ import React from 'react';
 import {
   airCallActiveHandleAtom,
   airCallActiveStepAtom,
+  colorAtom,
   currentAirCallHeaderStateAtom,
   currentAirCallHeaderStateHandleAtom,
 } from './atom/aircall.atoms';
@@ -12,6 +13,7 @@ import { Button } from '@mui/material';
 const Header = () => {
   const airCallState = useAtomValue(airCallActiveStepAtom);
   const headerAirCallState = useAtomValue(currentAirCallHeaderStateAtom);
+  const currentColorState = useAtomValue(colorAtom);
   const updateAirCallState = useSetAtom(airCallActiveHandleAtom);
   const updateAirCallHeaderState = useSetAtom(
     currentAirCallHeaderStateHandleAtom
@@ -45,7 +47,7 @@ const Header = () => {
           </Button>
         )}
         <Button
-          className={`header-inbox ${headerAirCallState === 'InBox' ? 'active' : ''}`}
+          className={`header-inbox ${headerAirCallState === 'InBox' ? 'active'  : ''} ${currentColorState}`}
           onClick={() =>
             updateAirCallHeaderState('InBox')
           }

@@ -17,19 +17,15 @@ const MainPage = () => {
   const airCallState = useAtomValue(airCallActiveStepAtom);
   const navigationState = useAtomValue(currentAirCallFooterStateAtom);
   useEffect(() => {
-    const getAirCallData = async () => {
-      try {
-        const response = await fetch(
-          'https://aircall-backend.onrender.com/activities'
-        );
-        if (response.ok) {
-          const result = await response.json();
-          setAirCall(result);
-        } else {
-          console.error('Error fetching data:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
+    const getAirCallData = async () => {      
+      const response = await fetch(
+        'https://aircall-backend.onrender.com/activities'
+      );
+      if (response.ok) {
+        const result = await response.json();
+        setAirCall(result);
+      } else {
+        console.error('Error fetching data:', response.statusText);
       }
     };
     getAirCallData();

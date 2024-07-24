@@ -21,31 +21,28 @@ const StateChangeComponent = ({ airCall }) => {
   };
 
   const archiveCall = async (callId, currentCallState) => {
-    try {
-      
-      const bodyContent =
-        currentCallState === 'Archive'
-          ? { is_archived: false }
-          : { is_archived: true };
-      const response = await fetch(
-        `https://aircall-backend.onrender.com/activities/${callId}`,
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(bodyContent),
-        }
-      );
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(
-          `Failed to archive call ${callId}: ${response.statusText} - ${errorText}`
-        );
+
+    const bodyContent =
+      currentCallState === 'Archive'
+        ? { is_archived: false }
+        : { is_archived: true };
+    const response = await fetch(
+      `https://aircall-backend.onrender.com/activities/${callId}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bodyContent),
       }
-    } catch (error) {
-      console.error(`Error archiving call ${callId}:`, error);
+    );
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.log(
+        `Failed to archive call ${callId}: ${response.statusText} - ${errorText}`
+      );
     }
+  
   };
   return (
     <Button className="call-container">
