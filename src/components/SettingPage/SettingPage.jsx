@@ -3,7 +3,7 @@ import './SettingPage.css';
 import { useSetAtom } from 'jotai';
 import { currentColorHandlerAtom } from '../../atom/aircall.atoms';
 
-function SettingPage() {
+const SettingPage = () => {
   const colors = ['blue', 'red', 'green', 'yellow'];
   const chooseColor = useSetAtom(currentColorHandlerAtom);
 
@@ -21,6 +21,6 @@ function SettingPage() {
       </div>
     </div>
   );
-}
+};
 
 export default SettingPage;

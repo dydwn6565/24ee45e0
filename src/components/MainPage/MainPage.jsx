@@ -18,7 +18,7 @@ const MainPage = () => {
   useEffect(() => {
     const getAirCallData = async () => {
       const response = await fetch(
-        `${API_BASE_URL}`
+        `${API_BASE_URL}/activities`
       );
       if (response.ok) {
         const result = await response.json();

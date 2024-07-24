@@ -26,16 +26,13 @@ const StateChangeComponent = ({ airCall }) => {
       currentCallState === 'Archive'
         ? { is_archived: false }
         : { is_archived: true };
-    const response = await fetch(
-      `${API_BASE_URL}/${callId}`,
-      {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(bodyContent),
-      }
-    );
+    const response = await fetch(`${API_BASE_URL}/activities/${callId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bodyContent),
+    });
     if (!response.ok) {
       const errorText = await response.text();
       console.log(

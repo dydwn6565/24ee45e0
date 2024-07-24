@@ -12,6 +12,8 @@ const CallListAndCallItem = ({ airCall, state }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedCallId, setSelectedCallId] = useState(null);
   const headerAirCallState = useAtomValue(currentAirCallHeaderStateAtom);
+ 
+
   useEffect(() => {
     const filteredActivityCalls = () => {
       const filteredData = airCall.filter((item) => item.is_archived === false);
@@ -42,7 +44,7 @@ const CallListAndCallItem = ({ airCall, state }) => {
     const bodyContent =
       option === 'Archive' ? { is_archived: true } : { is_archived: false };
     const response = await fetch(
-      `${API_BASE_URL}/${selectedCallId}`,
+      `${API_BASE_URL}/activities/${selectedCallId}`,
       {
         method: 'PATCH',
         headers: {
