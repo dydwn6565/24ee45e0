@@ -63,20 +63,10 @@ const CallListAndCallItem = ({ airCall, state }) => {
   return (
     <div>
       {headerAirCallState === 'InBox' ? (
-        <div>
-          <RenderGropuedCallsComponent
-            filteredAirCall={filteredActivityCall}
-            handleClick={handleClick}
-          />
-          <CallMenu
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            onMenuItemClick={handleMenuItemClick}
-            selectedCallId={selectedCallId}
-            airCall={airCall}
-          />
-        </div>
+        <RenderGropuedCallsComponent
+          filteredAirCall={filteredActivityCall}
+          handleClick={handleClick}
+        />
       ) : headerAirCallState === 'Archive' ? (
         <RenderGropuedCallsComponent
           filteredAirCall={filteredArchivedCall}
@@ -88,7 +78,16 @@ const CallListAndCallItem = ({ airCall, state }) => {
           handleClick={handleClick}
         />
       )}
-     
+      {(
+        headerAirCallState ==='InBox' || headerAirCallState === 'Archive') &&
+      <CallMenu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        onMenuItemClick={handleMenuItemClick}
+        selectedCallId={selectedCallId}
+        airCall={airCall}
+      />}
       
     </div>
   );

@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+  airCallActiveHandleAtom,
+  
   colorAtom,
   currentAirCallHeaderStateAtom,
   currentAirCallHeaderStateHandleAtom,
@@ -11,6 +13,8 @@ import { Button } from '@mui/material';
 const Header = () => {
   const headerAirCallState = useAtomValue(currentAirCallHeaderStateAtom);
   const currentColorState = useAtomValue(colorAtom);
+  // const airCallState = useAtomValue(airCallActiveStepAtom);
+  const handleAirCallState = useSetAtom(airCallActiveHandleAtom);
   const updateAirCallHeaderState = useSetAtom(
     currentAirCallHeaderStateHandleAtom
   );
@@ -35,8 +39,10 @@ const Header = () => {
       <div className="header-right-container">
         <Button
           className={`header-inbox ${headerAirCallState === 'InBox' ? 'active'  : ''} ${currentColorState}`}
-          onClick={() =>
-            updateAirCallHeaderState('InBox')
+          onClick={() =>{
+            updateAirCallHeaderState('InBox');
+            handleAirCallState('Activity');
+          }
           }
         >
           InBox
@@ -53,8 +59,10 @@ const Header = () => {
         <Button
           variant="text"
           className={`header-inbox ${headerAirCallState === 'Archive' ? 'active' : ''}`}
-          onClick={() =>
-            updateAirCallHeaderState('Archive')
+          onClick={() =>{
+            updateAirCallHeaderState('Archive');
+            handleAirCallState('Archive');
+          }
           }
         >
           Archive

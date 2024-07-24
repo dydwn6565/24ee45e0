@@ -5,13 +5,9 @@ export const currentAirCallHeaderStateAtom = atom('InBox');
 export const currentAirCallFooterStateAtom = atom('Call');
 export const colorAtom = atom('blue');
 
-export const airCallActiveHandleAtom = atom(null, (get, set) => {
-  let activeStep = get(airCallActiveStepAtom);
-  if (activeStep === 'Activity') {
-    set(airCallActiveStepAtom, 'Archive');
-  } else {
-    set(airCallActiveStepAtom, 'Activity');
-  }
+export const airCallActiveHandleAtom = atom(null, (get, set, newState) => {
+  set(airCallActiveStepAtom, newState);
+  
 });
 
 export const currentAirCallHeaderStateHandleAtom = atom(null, (get, set, newState) => {

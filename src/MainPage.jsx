@@ -4,6 +4,7 @@ import { useAtomValue } from 'jotai';
 import {
   airCallActiveStepAtom,
   currentAirCallFooterStateAtom,
+  currentAirCallHeaderStateAtom,
 } from './atom/aircall.atoms.jsx';
 import './css/ActivityFeedPage.css';
 import StateChangeComponent from './StateChangeComponent.jsx';
@@ -15,6 +16,7 @@ import KeyPadComponent from './KeyPadComponent.jsx';
 const MainPage = () => {
   const [airCall, setAirCall] = useState([]);
   const airCallState = useAtomValue(airCallActiveStepAtom);
+  const currentHeaderMenu = useAtomValue(currentAirCallHeaderStateAtom);
   const navigationState = useAtomValue(currentAirCallFooterStateAtom);
   useEffect(() => {
     const getAirCallData = async () => {      
@@ -35,7 +37,9 @@ const MainPage = () => {
     case 'Call':
       return (
         <>
-          <StateChangeComponent airCall={airCall} />
+          {
+            (currentHeaderMenu === 'InBox' || currentHeaderMenu === 'Archive') 
+              && <StateChangeComponent airCall={airCall} />}
           {airCall.length > 0 && airCallState === 'Activity' ? (
             <CallListAndCallItem airCall={airCall} state={false} />
           ) : (
