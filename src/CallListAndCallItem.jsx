@@ -6,16 +6,25 @@ import { useAtomValue } from 'jotai';
 import RenderGropuedCallsComponent from './RenderGropuedCallsComponent.jsx';
 
 const CallListAndCallItem = ({ airCall, state }) => {
-  const [filteredAirCall, setFilteredAirCall] = useState([]);
+  const [filteredActivityCall, setFilteredActivityCall] = useState([]);
+  const [filteredArchivedCall, setFilteredArchivedCall] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedCallId, setSelectedCallId] = useState(null);
   const headerAirCallState = useAtomValue(currentAirCallHeaderStateAtom);
   useEffect(() => {
-    const filteredAirCallByState = () => {
-      const filteredData = airCall.filter((item) => item.is_archived === state);
-      setFilteredAirCall(filteredData);
+    const filteredActivityCalls = () => {
+      const filteredData = airCall.filter((item) => item.is_archived === false);
+      setFilteredActivityCall(filteredData);
     };
-    filteredAirCallByState();
+    filteredActivityCalls();
+  }, [airCall, state]);
+
+  useEffect(() => {
+    const filteredArchivedCalls = () => {
+      const filteredData = airCall.filter((item) => item.is_archived === true);
+      setFilteredArchivedCall(filteredData);
+    };
+    filteredArchivedCalls();
   }, [airCall, state]);
 
   const handleClick = (event, callId) => {
@@ -54,25 +63,33 @@ const CallListAndCallItem = ({ airCall, state }) => {
   return (
     <div>
       {headerAirCallState === 'InBox' ? (
+        <div>
+          <RenderGropuedCallsComponent
+            filteredAirCall={filteredActivityCall}
+            handleClick={handleClick}
+          />
+          <CallMenu
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            onMenuItemClick={handleMenuItemClick}
+            selectedCallId={selectedCallId}
+            airCall={airCall}
+          />
+        </div>
+      ) : headerAirCallState === 'Archive' ? (
         <RenderGropuedCallsComponent
-          filteredAirCall={filteredAirCall}
+          filteredAirCall={filteredArchivedCall}
           handleClick={handleClick}
         />
-      ) : (
+      ) :  (
         <RenderGropuedCallsComponent
           filteredAirCall={airCall}
           handleClick={handleClick}
         />
       )}
      
-      <CallMenu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        onMenuItemClick={handleMenuItemClick}
-        selectedCallId={selectedCallId}
-        airCall={airCall}
-      />
+      
     </div>
   );
 };

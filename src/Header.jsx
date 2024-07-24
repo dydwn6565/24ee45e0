@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  airCallActiveHandleAtom,
-  airCallActiveStepAtom,
   colorAtom,
   currentAirCallHeaderStateAtom,
   currentAirCallHeaderStateHandleAtom,
@@ -11,10 +9,8 @@ import './css/header.css';
 import { Button } from '@mui/material';
 
 const Header = () => {
-  const airCallState = useAtomValue(airCallActiveStepAtom);
   const headerAirCallState = useAtomValue(currentAirCallHeaderStateAtom);
   const currentColorState = useAtomValue(colorAtom);
-  const updateAirCallState = useSetAtom(airCallActiveHandleAtom);
   const updateAirCallHeaderState = useSetAtom(
     currentAirCallHeaderStateHandleAtom
   );
@@ -34,18 +30,9 @@ const Header = () => {
             />
           </g>
         </svg>
-        <div className="header-title">{airCallState}</div>
+        <div className="header-title">Activity</div>
       </div>
       <div className="header-right-container">
-        {airCallState === 'Archive' ? (
-          <Button onClick={() => updateAirCallState(airCallState === 'Activity')}>
-            Activity
-          </Button>
-        ) : (
-          <Button onClick={() => updateAirCallState(airCallState === 'Archive')}>
-            Archive
-          </Button>
-        )}
         <Button
           className={`header-inbox ${headerAirCallState === 'InBox' ? 'active'  : ''} ${currentColorState}`}
           onClick={() =>
@@ -62,6 +49,15 @@ const Header = () => {
           }
         >
           AllCalls
+        </Button>
+        <Button
+          variant="text"
+          className={`header-inbox ${headerAirCallState === 'Archive' ? 'active' : ''}`}
+          onClick={() =>
+            updateAirCallHeaderState('Archive')
+          }
+        >
+          Archive
         </Button>
       </div>
     </header>
