@@ -5,12 +5,16 @@ import { currentAirCallHeaderStateAtom } from '../../atom/aircall.atoms.jsx';
 import { useAtomValue } from 'jotai';
 import RenderGropuedCallsComponent from './RenderGroupedCallsComponent.jsx';
 import { API_BASE_URL } from '../../utils/api.js';
+import SnackBar from '../SnackBar/SnackBar.jsx';
 
 const CallListAndCallItem = ({ airCall, state }) => {
   const [filteredActivityCall, setFilteredActivityCall] = useState([]);
   const [filteredArchivedCall, setFilteredArchivedCall] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedCallId, setSelectedCallId] = useState(null);
+  const [snackBarMessage, setSnackBarMessage] = useState ('');
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
+  const [snackBarSeverity, setSnackBarSeverity] = useState('error');
   const headerAirCallState = useAtomValue(currentAirCallHeaderStateAtom);
 
   useEffect(() => {
@@ -29,12 +33,12 @@ const CallListAndCallItem = ({ airCall, state }) => {
     filteredArchivedCalls();
   }, [airCall, state]);
 
-  const handleClick = (event, callId) => {
+  const handleExtendsComponentClick = (event, callId) => {
     setAnchorEl(event.currentTarget);
     setSelectedCallId(callId);
   };
 
-  const handleClose = () => {
+  const handleExtendsComponentClose = () => {
     setAnchorEl(null);
     setSelectedCallId(null);
   };
@@ -54,10 +58,15 @@ const CallListAndCallItem = ({ airCall, state }) => {
     );
 
     if (!response.ok) {
-      console.log('Network response was not ok.');
+      setSnackBarMessage(`Failed to fetch ${selectedCallId} call`);
+      setSnackBarSeverity('error');
+      setSnackBarOpen(true);
     }
+    handleExtendsComponentClose();
+  };
 
-    handleClose();
+  const handleCloseSnackBar = () => {
+    setSnackBarOpen(false);
   };
 
   const open = Boolean(anchorEl);
@@ -67,29 +76,35 @@ const CallListAndCallItem = ({ airCall, state }) => {
       {headerAirCallState === 'InBox' ? (
         <RenderGropuedCallsComponent
           filteredAirCall={filteredActivityCall}
-          handleClick={handleClick}
+          handleClick={handleExtendsComponentClick}
         />
       ) : headerAirCallState === 'Archive' ? (
         <RenderGropuedCallsComponent
           filteredAirCall={filteredArchivedCall}
-          handleClick={handleClick}
+          handleClick={handleExtendsComponentClick}
         />
       ) : (
         <RenderGropuedCallsComponent
           filteredAirCall={airCall}
-          handleClick={handleClick}
+          handleClick={handleExtendsComponentClick}
         />
       )}
       {(headerAirCallState === 'InBox' || headerAirCallState === 'Archive') && (
         <CallMenu
           anchorEl={anchorEl}
           open={open}
-          onClose={handleClose}
+          onClose={handleExtendsComponentClose}
           onMenuItemClick={handleMenuItemClick}
           selectedCallId={selectedCallId}
           airCall={airCall}
         />
       )}
+      <SnackBar 
+        open={snackBarOpen} 
+        onClose={handleCloseSnackBar} 
+        message={snackBarMessage} 
+        severity={snackBarSeverity}
+      />
     </div>
   );
 };

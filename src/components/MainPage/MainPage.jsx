@@ -13,12 +13,16 @@ import PhoneNumberListPage from '../PhoneNumberListPage/PhoneNumberListPage.jsx'
 import KeyPadComponent from '../KeyPadPage/KeyPadComponent.jsx';
 import SettingPage from '../SettingPage/SettingPage.jsx';
 import { API_BASE_URL } from '../../utils/api.js';
+import SnackBar from '../SnackBar/SnackBar.jsx';
 
 const MainPage = () => {
   const [airCall, setAirCall] = useState([]);
   const airCallState = useAtomValue(airCallActiveStepAtom);
   const currentHeaderMenu = useAtomValue(currentAirCallHeaderStateAtom);
   const navigationState = useAtomValue(currentAirCallFooterStateAtom);
+  const [snackBarMessage, setSnackBarMessage] = useState('');
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
+  const [snackBarSeverity, setSnackBarSeverity] = useState('error'); 
   useEffect(() => {
     const getAirCallData = async () => {
       const response = await fetch(`${API_BASE_URL}/activities`);
@@ -26,11 +30,16 @@ const MainPage = () => {
         const result = await response.json();
         setAirCall(result);
       } else {
-        console.error('Error fetching data:', response.statusText);
+        setSnackBarMessage('Failed to fetch entire calls');
+        setSnackBarSeverity('error');
+        setSnackBarOpen(true);
       }
     };
     getAirCallData();
   }, [airCallState, airCall]);
+  const handleCloseSnackBar = () => {
+    setSnackBarOpen(false);
+  };
   const renderContent = () => {
     switch (navigationState) {
     case 'Call':
@@ -63,6 +72,12 @@ const MainPage = () => {
   return (
     <div className="activity-foot-page-container">
       <div>{renderContent()}</div>
+      <SnackBar 
+        open={snackBarOpen} 
+        onClose={handleCloseSnackBar} 
+        message={snackBarMessage} 
+        severity={snackBarSeverity}
+      />
     </div>
   );
 };

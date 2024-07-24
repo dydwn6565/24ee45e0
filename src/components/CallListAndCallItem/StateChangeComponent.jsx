@@ -1,13 +1,16 @@
 import { useAtomValue } from 'jotai';
-import React from 'react';
+import React, { useState } from 'react';
 import { HiOutlineArchive } from 'react-icons/hi';
 import { Button } from '@mui/material';
 import { airCallActiveStepAtom } from '../../atom/aircall.atoms';
 import { API_BASE_URL } from '../../utils/api';
+import SnackBar from '../SnackBar/SnackBar';
 
 const StateChangeComponent = ({ airCall }) => {
   const airCallState = useAtomValue(airCallActiveStepAtom);
-
+  const [snackBarMessage, setSnackBarMessage] = useState ('');
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
+  const [snackBarSeverity, setSnackBarSeverity] = useState('error');
   const stateChangeCall = async () => {
     try {
       const callIds = airCall.filter(
@@ -33,24 +36,34 @@ const StateChangeComponent = ({ airCall }) => {
       },
       body: JSON.stringify(bodyContent),
     });
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.log(
-        `Failed to archive call ${callId}: ${response.statusText} - ${errorText}`
-      );
+    if (!response.ok) { 
+      setSnackBarMessage(`Failed to fetch ${callId} call`);
+      setSnackBarSeverity('error');
+      setSnackBarOpen(true);
     }
   };
+  const handleCloseSnackBar = () => {
+    setSnackBarOpen(false);
+  };
   return (
-    <Button className="call-container">
-      <div className="call-container-left" onClick={() => stateChangeCall()}>
-        <HiOutlineArchive size={20} />
-        {airCallState === 'Archive' ? (
-          <p>Activity all calls</p>
-        ) : (
-          <p>Archive all calls</p>
-        )}
-      </div>
-    </Button>
+    <div>
+      <Button className="call-container">
+        <div className="call-container-left" onClick={() => stateChangeCall()}>
+          <HiOutlineArchive size={20} />
+          {airCallState === 'Archive' ? (
+            <p>Activity all calls</p>
+          ) : (
+            <p>Archive all calls</p>
+          )}
+        </div>
+      </Button>
+      <SnackBar 
+        open={snackBarOpen} 
+        onClose={handleCloseSnackBar} 
+        message={snackBarMessage} 
+        severity={snackBarSeverity}
+      />
+    </div>
   );
 };
 
